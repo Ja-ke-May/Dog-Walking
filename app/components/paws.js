@@ -128,7 +128,7 @@ const Paws = () => {
 
   useEffect(() => {
     // Start moving paw prints every 400ms
-    const intervalId = setInterval(movePawPrint, 300);
+    const intervalId = setInterval(movePawPrint, 400);
 
     // Cleanup on component unmount
     return () => clearInterval(intervalId);
