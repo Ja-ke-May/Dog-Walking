@@ -1,3 +1,6 @@
+"use client";
+ 
+
 import Paws from "./components/paws";
 
 export default function Home() {

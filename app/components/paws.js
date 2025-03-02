@@ -116,7 +116,7 @@ const Paws = () => {
         // Remove the oldest image after the fade-out transition
         setTimeout(() => {
           setImages((prevImages) => prevImages.slice(1));
-        }, 400); // Delay to allow the fade-out to finish
+        }, 500); // Delay to allow the fade-out to finish
 
         return updatedImages;
       });
