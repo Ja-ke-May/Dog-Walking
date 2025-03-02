@@ -13,7 +13,7 @@ export default function Home() {
       color: '#333', // Keep text color professional
     }}
     >
-      <img src="../paw-space-nb.png" alt="Paw Print" className="left-0 h-32 w-32" />
+      <img src="../paw-space-nb.png" alt="Paw Print" className="left-0 h-16 w-16 md:h-32 md:w-32" />
       <Paws />
     </div>
   );

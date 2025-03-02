@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 const Paws = () => {
   const [images, setImages] = useState([]); // Array to track the paw print images 
   const [visible, setVisible] = useState(true); 
-  const maxStepDistance = 40; // Maximum distance the next paw print can move from the previous one
+  const maxStepDistance = 50; // Maximum distance the next paw print can move from the previous one
   const maxAngleDeviation = Math.PI / 6; // Allow movement within ±30 degrees of the last direction
   const staggerAmount = 20; // Amount to stagger paw prints left/right (in pixels)
   const minDistance = 40; // Minimum distance between paw prints to prevent overlap
