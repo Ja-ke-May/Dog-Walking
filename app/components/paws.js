@@ -5,7 +5,7 @@ const Paws = () => {
   const [visible, setVisible] = useState(true);
   const maxStepDistance = 50;
   const maxAngleDeviation = Math.PI / 6;
-  const staggerAmount = 20;
+  const staggerAmount = 40;
   const minDistance = 40;
 
   const checkForOverlap = (newX, newY) => {
@@ -16,13 +16,12 @@ const Paws = () => {
       return distance < minDistance;
     });
   };
-
   const movePawPrint = () => {
     const newImageId = Date.now();
     let newX = 0;
     let newY = 0;
     let angleToNextMove = 0;
-
+  
     if (images.length === 0) {
       newX = Math.random() * window.innerWidth;
       newY = Math.random() * window.innerHeight;
@@ -39,21 +38,22 @@ const Paws = () => {
       newY += offsetY;
       angleToNextMove = newAngle;
     }
-
+  
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
     let clampedX = Math.max(0, Math.min(screenWidth - 50, newX));
     let clampedY = Math.max(0, Math.min(screenHeight - 50, newY));
-
+  
     if (clampedX <= 0 || clampedX >= screenWidth - 50) {
       angleToNextMove = Math.PI - angleToNextMove;
     }
     if (clampedY <= 0 || clampedY >= screenHeight - 50) {
       angleToNextMove = -angleToNextMove;
     }
-
+  
+    // Use staggered path for odd and even steps
     let finalX = clampedX + (images.length % 2 === 0 ? staggerAmount : -staggerAmount);
-
+  
     if (checkForOverlap(finalX, clampedY)) {
       let attempts = 0;
       while (checkForOverlap(finalX, clampedY) && attempts < 10) {
@@ -62,7 +62,7 @@ const Paws = () => {
         attempts++;
       }
     }
-
+  
     const newImage = {
       id: newImageId,
       x: finalX,
@@ -70,7 +70,7 @@ const Paws = () => {
       angle: angleToNextMove,
       opacity: 1,
     };
-
+  
     if (images.length === 100) {
       setImages((prevImages) => {
         const updatedImages = prevImages.map((img) => {
@@ -82,9 +82,10 @@ const Paws = () => {
         return updatedImages;
       });
     }
-
+  
     setImages((prevImages) => [...prevImages, newImage]);
   };
+  
 
   useEffect(() => {
     const intervalId = setInterval(movePawPrint, 300);
