@@ -87,21 +87,24 @@ const Paws = () => {
   };
 
   useEffect(() => {
-    const intervalId = setInterval(movePawPrint, 400);
+    const intervalId = setInterval(movePawPrint, 300);
     return () => clearInterval(intervalId);
   }, [images]);
 
   useEffect(() => {
     const visibilityInterval = setInterval(() => {
-      setVisible(false);
+      setVisible(false); // Start fade-out effect
       setTimeout(() => {
-        setImages([]);
-        setVisible(true);
-      }, 6000);
-    }, 3000);
-
+        setImages([]); // Clear images AFTER fade-out completes
+        setTimeout(() => {
+          setVisible(true); // Start fade-in effect
+        }, 250); // Delay fade-in slightly after clearing images
+      }, 1000); // Ensure this timeout matches the fade-out duration (2s)
+    }, 4500); // Extend the interval to allow full fade-in and fade-out before restarting
+  
     return () => clearInterval(visibilityInterval);
   }, []);
+  
 
   return (
     <div
