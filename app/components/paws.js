@@ -126,7 +126,7 @@ const Paws = () => {
             transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
           }}
         >
-          <img src="../paw-space-nb.png" alt="Paw Print" className="h-8 w-8" />
+          <img src="../paw-space-nb.png" alt="Paw Print" className="h-8 w-8 opacity-80 brightness-125" />
         </div>
       ))}
     </div>
