@@ -99,8 +99,8 @@ const Paws = () => {
         setImages([]); // Clear images AFTER fade-out completes
         setTimeout(() => {
           setVisible(true); // Start fade-in effect
-        }, 250); // Delay fade-in slightly after clearing images
-      }, 1000); // Ensure this timeout matches the fade-out duration (2s)
+        }, 500); // Delay fade-in slightly after clearing images
+      }, 2000); // Ensure this timeout matches the fade-out duration (2s)
     }, 4500); // Extend the interval to allow full fade-in and fade-out before restarting
   
     return () => clearInterval(visibilityInterval);
