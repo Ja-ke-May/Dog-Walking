@@ -2,7 +2,7 @@ const Intro = () => {
     return (
       <div className="relative flex max-w-lg bg-white/0 rounded p-4 shadow-md items-center">
         <img
-          src="../on-log.jpg"
+          src="../on-log.jpeg"
           alt="Jake and Jack - Dog Walking Services"
           className="w-32 h-32 md:w-60 md:h-60 rounded object-cover border-2 border-black/90"
         />
