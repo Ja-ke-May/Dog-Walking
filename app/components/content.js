@@ -25,44 +25,37 @@ const Content = () => {
   };
 
   return (
-    <div className="content-container relative">
+    <div className="mt-10">
       {sections[currentSection]} {/* Render the current section */}
 
-      <div className="w-full flex justify-between items-center mt-4 relative">
-        {/* Previous Button */}
-        <div
-          className="relative cursor-pointer"
-          onClick={handlePrevious} // Navigate to the previous section
-        >
-          <img
-            src="../paw-space-nb.png"
-            alt="Previous"
-            className="h-32 w-32 rotate-270 opacity-80 brightness-125"
-          />
-          <p className="absolute top-1/2 left-1/2 transform -translate-x-[-12px] -translate-y-1/2 rotate-270 text-[#9A9A7B] brightness-125 font-bold z-10">
-            Previous
-          </p>
-        </div>
+      <div className="w-full fixed bottom-0 left-0 mb-2 flex justify-between items-center mt-4 md:pr-20 lg:pr-40 xl:pr-80 md:pl-20 lg:pl-40 xl:pl-80">
+        
 
-        <p className="text-center max-w-20 font-bold text-[#B5A888] bg-black/90 rounded-full p-4 brightness-125 border-2 border-white/20 cursor-pointer"
+       
+
+        <div className="cursor-pointer relative flex flex-col items-center" onClick={handlePrevious}>
+  <p className="text-[#EAD7A3] brightness-125 ml-2 z-10 mb-1">Previous</p>
+  <img
+    src="../paw-space-nb.png"
+    alt="Previous"
+    className="h-16 w-16 rotate-270 brightness-125"
+  />
+</div>
+
+<p className="text-center max-w-20 font-bold text-[#B5A888] bg-black/90 rounded-full p-4 brightness-125 border-2 border-white/20 cursor-pointer"
         onClick={handleBook}>
           BOOK A BIG WALK NOW!
         </p>
 
-        {/* Next Button */}
-        <div
-          className="relative cursor-pointer"
-          onClick={handleNext} // Navigate to the next section
-        >
-          <p className="absolute top-1/2 left-1/2 transform -translate-x-15 -translate-y-1/2 rotate-90 text-[#9A9A7B] brightness-125 font-bold z-10">
-            Next
-          </p>
-          <img
-            src="../paw-space-nb.png"
-            alt="Next"
-            className="h-32 w-32 rotate-90 opacity-80 brightness-125"
-          />
-        </div>
+{/* Next Button */}
+<div className="cursor-pointer relative flex flex-col items-center" onClick={handleNext}>
+  <p className="text-[#EAD7A3] brightness-125 z-10 mb-1">Next</p>
+  <img
+    src="../paw-space-nb.png"
+    alt="Next"
+    className="h-16 w-16 rotate-90 brightness-125"
+  />
+</div>
       </div>
     </div>
   );
