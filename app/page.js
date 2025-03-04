@@ -13,7 +13,7 @@ export default function Home() {
       <div><img src="../paw-space-nb.png" alt="Paw Print" className="top-20 h-50 w-50" />
 
       
-      <h1 className="absolute top-28 left-1/2 -translate-x-1/2 text-[#B5A888] brightness-125 font-black text-3xl tracking-wide flex flex-col text-center drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+      <h1 className="absolute top-28 left-1/2 -translate-x-1/2 text-[#B5A888] brightness-125 font-black text-3xl flex flex-col text-center">
         BIG 
         <span>WALKS</span>
       </h1>
