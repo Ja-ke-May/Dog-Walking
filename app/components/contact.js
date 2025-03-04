@@ -1,6 +1,6 @@
 const Contact = () => {
     return (
-      <div className="relative flex max-w-lg bg-white/0 font-bold rounded p-4 shadow-md items-center text-center">
+      <div className="relative flex max-w-lg bg-white/0 rounded p-4 shadow-md items-center text-center">
         <div className="ml-2 p-2 bg-black/90 text-[#B5A888] brightness-125 rounded md:text-xl">
           <p className="m-2">Please contact me to discuss your needs.</p>
           <p className="m-2">Jacob May</p>

@@ -1,6 +1,6 @@
 const Intro = () => {
     return (
-      <div className="relative flex max-w-lg bg-white/0 font-bold rounded p-4 shadow-md items-center">
+      <div className="relative flex max-w-lg bg-white/0 rounded p-4 shadow-md items-center">
         <img
           src="../on-log.jpg"
           alt="Jake and Jack - Dog Walking Services"
