@@ -2,7 +2,7 @@ const Intro2 = () => {
     return (
       <div className="relative flex max-w-lg bg-white/0 font-bold rounded p-4 shadow-md items-center text-center">
         
-        <div className="ml-2 p-2 bg-black/90 text-[#B5A888] brightness-125 rounded md:text-xl">
+        <div className="ml-2 p-2 bg-black/90 text-[#B5A888] brightness-125 rounded">
           <p className="">
           My focus is your best friend. I believe your dog deserves to be completely fulfilled from our walks both mentally and physically, so they will have my full attention and care. 
 <span className="brightness-125">BIG WALKS</span> aren't just long walks, they are full of enrichment, adventure and enjoyment. 

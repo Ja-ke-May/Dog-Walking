@@ -6,7 +6,7 @@ const Intro = () => {
           alt="Jake and Jack - Dog Walking Services"
           className="w-32 h-32 md:w-60 md:h-60 rounded object-cover border-2 border-black/90"
         />
-        <div className="ml-2 p-2 bg-black/90 text-[#B5A888] brightness-125 rounded md:text-xl">
+        <div className="ml-2 p-2 bg-black/90 text-[#B5A888] brightness-125 rounded">
           <p className="">
             Hello! I'm Jake, and this is my boy, Jack. We love exploring the outdoors and bringing new friends out on adventures. 
             <br /> 
