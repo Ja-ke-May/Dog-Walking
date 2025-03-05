@@ -1,12 +1,16 @@
-const PriceList = () => {
+const PriceList = ({ images }) => {
     return (
         <>
         <h3 className="text-center font-bold text-xl">Price List</h3>
       <div className="relative flex max-w-lg bg-white/0 rounded p-2 items-center text-center">
     
-        {/* Left Image */}
-        <div className="flex-shrink-0 w-1/4 mr-4">
-          <img src="/Butch.jpg" alt="Butch" className="max-w-full md:min-w-20 lg:min-w-30 rounded-full" />
+         {/* Left Image */}
+         <div className="flex-shrink-0 w-1/4 mr-4">
+          <img 
+            src={images[0].src} 
+            alt={images[0].alt} 
+            className={images[0].className} 
+          />
         </div>
     
         {/* Pricing */}
@@ -43,7 +47,11 @@ const PriceList = () => {
     
         {/* Right Image */}
         <div className="flex-shrink-0 w-1/4 ml-4">
-          <img src="/Candy.jpg" alt="Candy" className="max-w-full md:min-w-20 lg:min-w-30 rounded-full" />
+          <img 
+            src={images[1].src} 
+            alt={images[1].alt} 
+            className={images[1].className} 
+          />
         </div>
         
       </div>

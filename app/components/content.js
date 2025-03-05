@@ -5,10 +5,60 @@ import Contact from "./contact";
 import PriceList from "./priceList";
 
 const Content = () => {
-  const sections = [<Intro />, <Intro2 />, <PriceList />, <Contact />,]; // Add more components here as needed
+
+  const images = {
+    intro: [
+      {
+        src: "../on-log.jpeg",
+        alt: "Jake and Jack man and mini labradoodle balancing on a log",
+        className: "rounded object-cover border-2 border-black/90"
+      },
+      {
+        src: "../on-log-2.jpeg",
+        alt: "Jake and Jack man and mini labradoodle balancing on a log",
+        className: "rounded object-cover border-2 border-black/90 mt-2"
+      }
+    ],
+    intro2: [
+      {
+        src: "pup-patch.png",
+        alt: "staffordshire bull terrier puppy",
+        className: "rounded w-10"
+      }
+    ],
+    priceList: [
+      {
+        src: "/Butch.jpg",
+        alt: "Butch",
+        className: "max-w-full md:min-w-20 lg:min-w-30 rounded-full"
+      },
+      {
+        src: "/Candy.jpg",
+        alt: "Candy",
+        className: "max-w-full md:min-w-20 lg:min-w-30 rounded-full"
+      }
+    ],
+    contact: [
+      {
+        src: "Jacob May.jpg",
+        alt: "Jacob May",
+        className: "rounded max-w-16 md:max-w-32"
+      }
+    ]
+  };
+  
+
+  
+  const sections = [
+    <Intro images={images.intro} />,
+    <Intro2 images={images.intro2} />,
+    <PriceList images={images.priceList} />,
+    <Contact images={images.contact} />
+  ];
+  
   const [currentSection, setCurrentSection] = useState(0); // Track current section index
 
-
+ 
   const handleNext = () => {
     setCurrentSection((prevSection) =>
       prevSection === sections.length - 1 ? 0 : prevSection + 1 // Loop back to the first section

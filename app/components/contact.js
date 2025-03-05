@@ -1,15 +1,17 @@
-const Contact = () => {
+const Contact = ({ images }) => {
     return (
       <div className="relative flex max-w-lg bg-white/0 rounded p-4 items-center text-center">
         <div className="ml-2 p-2 bg-black/80 text-[#B5A888] brightness-125 rounded  md:text-lg lg:text-xl">
           <p className="m-2">Please contact me to discuss your requirements.</p>
           
           <div className="w-full flex justify-center mt-2 mb-2">
+          {/* Use images prop for the profile picture */}
           <img 
-            src="Jacob May.jpg" 
-            alt="Jacob May" 
-            className="rounded max-w-16 md:max-w-32"
+            src={images[0].src} 
+            alt={images[0].alt} 
+            className={images[0].className} 
           />
+        
           </div>
           <p className="brightness-125 mt-4">
             <a href="tel:+447780685832" className="text-[#B5A888] hover:text-[#9A9A7B] text-lg">
