@@ -63,7 +63,7 @@ const Content = ({ images }) => {
   }, [isSwiping]);
 
   return (
-    <div {...handlers} className="absolute overflow-hidden w-full h-full">
+    <div {...handlers} className="absolute overflow-hidden w-full h-full mt-10">
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
           key={currentSection}
