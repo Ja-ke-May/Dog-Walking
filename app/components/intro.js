@@ -1,6 +1,8 @@
 const Intro = ({ images }) => {
     return (
-      <div className="relative flex max-w-lg bg-white/0 rounded p-4  items-center">
+      <div className="flex flex-col">
+        <h3 className="text-center font-bold text-lg md:text-xl mb-2">Hello!</h3>
+      <div className="relative flex max-w-lg bg-white/0 rounded ml-2 mr-2 items-center">
          <div className="flex flex-col max-w-[30%]">
         {images.map((image, index) => (
           <img
@@ -20,6 +22,7 @@ const Intro = ({ images }) => {
           Huddersfield and West Yorkshire.
           </p>
         </div>
+      </div>
       </div>
     );
   };

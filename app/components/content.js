@@ -5,13 +5,20 @@ import Intro from "./intro";
 import Intro2 from "./intro2";
 import Contact from "./contact";
 import PriceList from "./priceList";
+import WhatYouGet from "./whatYouGet";
+import WhatYouGetTwo from "./youGet2";
+import Safety from "./safety";
 
 const Content = ({ images }) => {
   const sections = [
     <Intro images={images.intro} />,
     <Intro2 images={images.intro2} />,
+    <WhatYouGet images={images.whatYouGet}/>, 
+    <WhatYouGetTwo images={images.whatYouGetTwo}/>, 
+    <Safety images={images.safety}/>, 
     <PriceList images={images.priceList} />,
-    <Contact images={images.contact} />
+    <Contact images={images.contact} />,  
+    
   ];
 
   const [currentSection, setCurrentSection] = useState(0);
@@ -30,7 +37,7 @@ const Content = ({ images }) => {
 
   const handleBook = () => {
     setDirection(1);
-    setCurrentSection(3);
+    setCurrentSection(6);
   };
 
   const handlers = useSwipeable({

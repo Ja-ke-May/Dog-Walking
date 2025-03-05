@@ -1,8 +1,11 @@
 const Contact = ({ images }) => {
     return (
-      <div className="relative flex flex-col max-w-lg bg-white/0 rounded p-4 items-center text-center">
-        <div className="ml-2 p-2 bg-black/80 text-[#B5A888] brightness-125 rounded  md:text-lg lg:text-xl">
-          <p className="m-2">Please contact me to discuss your requirements.</p>
+      <div className="flex flex-col">
+        <h3 className="text-center font-bold text-lg md:text-xl mb-2">Contact</h3>
+      <div className="relative flex flex-col max-w-lg bg-white/0 rounded items-center text-center">
+        <div className="ml-2 mr-2 p-2 bg-black/80 text-[#B5A888] brightness-125 rounded  md:text-lg lg:text-xl">
+          <p className="text-lg">Please get in touch to discuss your requirements.</p>
+          <p className="text-lg mt-1">For prices press Previous.</p>
           </div>
           <div className="w-full flex justify-center mt-1 mb-1">
           {/* Use images prop for the profile picture */}
@@ -31,7 +34,7 @@ const Contact = ({ images }) => {
             </a>
           </p>
         </div>
-        
+        </div>
       </div>
     );
   };

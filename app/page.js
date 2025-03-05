@@ -22,7 +22,7 @@ export default function Home() {
       {
         src: "pup-patch.png",
         alt: "staffordshire bull terrier puppy",
-        className: "rounded w-10 mt-1 mb-1"
+        className: "rounded w-14 mt-1 mb-1"
       }
     ],
     priceList: [
@@ -43,7 +43,28 @@ export default function Home() {
         alt: "Jacob May",
         className: "rounded max-w-16 md:max-w-20"
       }
-    ]
+    ], 
+    whatYouGet: [
+      {
+        src: "fred.jpeg",
+        alt: "man on coach with yellow lab labrador dog",
+        className: "rounded object-cover"
+      }
+    ],
+    whatYouGetTwo: [
+      {
+        src: "tilly.jpeg",
+        alt: "Cockapoo puppy",
+        className: "rounded object-cover"
+      }
+    ],
+    safety: [
+      {
+        src: "jack-flying.jpg",
+        alt: "mini labradoodle flying above sea water",
+        className: "rounded object-cover max-w-1/2 mt-2"
+      }
+    ],
   };
 
   useEffect(() => {
@@ -53,20 +74,23 @@ export default function Home() {
       "pup-patch.png",
       "Butch.jpg",
       "Candy.jpg",
-      "Jacob May.jpg"
+      "Jacob May.jpg", 
+      "fred.jpeg", 
+      "tilly.jpeg",
+      "jack-flying.jpg",
     ];
   
     imagesToPreload.forEach((src) => {
       const img = new Image();
-      img.src = `/${src}`;  // Adjust path to match your actual public folder structure
+      img.src = `/${src}`;  
     });
   }, []);
 
   return (
     <div className="">
      
-
-      <Paws />
+{/* 
+      <Paws /> */}
 
       <div className="w-full h-screen flex flex-col items-center">
         <img

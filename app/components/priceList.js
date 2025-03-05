@@ -2,7 +2,7 @@ const PriceList = ({ images }) => {
   return (
       <div className="flex flex-col">
       <div className="">
-          <h3 className="text-center font-bold text-xl">Price List</h3>
+          <h3 className="text-center font-bold text-lg md:text-xl">Price List</h3>
           </div>
           <div>
           <div className="relative flex max-w-lg bg-white/0 rounded p-2 items-center text-center">
@@ -18,7 +18,7 @@ const PriceList = ({ images }) => {
               </div>
 
               {/* Pricing */}
-              <div className="flex-grow grid grid-cols-2 gap-4">
+              <div className="flex-grow grid grid-cols-2 gap-2">
                   {/* 45m standard walk £20 */}
                   <div className="flex items-center justify-center p-4 bg-black/80 text-[#B5A888] brightness-125 rounded md:text-lg">
                       <div className="whitespace-normal text-center">
