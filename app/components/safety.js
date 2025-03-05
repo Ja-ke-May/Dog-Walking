@@ -9,11 +9,11 @@ const Safety = ({ images }) => {
        <p>
        <b>First Aid Trained</b><br />Canine and human.
        </p>
-       <br />
+       
        <p>
        <b>Public liability Insured</b><br />Fully insured up to 5 million.
        </p>
-       <br /> 
+       
        <p>
        <b>DBS</b><br />Enhanced DBS checked. 
          </p>
