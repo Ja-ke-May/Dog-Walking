@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Big Walks | Professional Dog Walking in Huddersfield",
+  title: "Big Walks | Professional Dog Walking HD4 Huddersfield, West Yorkshire",
   description: "Dependable dog walking services by Jacob May in the West Yorkshire area. Book a big walk today!",
   keywords: "dog walking, dog walker, Huddersfield, West Yorkshire, pet care, dog care, individual, group",
   author: "Jacob May",
@@ -27,9 +27,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-gradient-to-br from-[#A1B28D] via-[#B5A888] to-[#9A9A7B]`}
       >
         {children}
       </body>

@@ -63,12 +63,12 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div className="">
      
 
-      <Paws />
+      {/* <Paws /> */}
 
-      <div className="w-full h-screen flex flex-col items-center bg-gradient-to-br from-[#A1B28D] via-[#B5A888] to-[#9A9A7B]">
+      <div className="w-full h-screen flex flex-col items-center">
         <img
           src="../BIG_WALKS_green_brown_bg-removebg.png"
           alt="Paw Print"
@@ -82,6 +82,6 @@ export default function Home() {
 
         <Content images={images} />
       </div>
-    </>
+    </div>
   );
 }
