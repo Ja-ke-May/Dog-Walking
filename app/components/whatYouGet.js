@@ -11,9 +11,9 @@ const WhatYouGet = ({ images }) => {
           
             
             <p className="">
-            <b>One-on-one care</b> – It will only ever be me and Jack with your dog to ensure they have the best experience.<br />
-            <b>Intro visit</b> – A short 10 minute pop in to make sure we’re good to go.<br />
-            <b>Focused, local walks</b> – I’ll choose the best route near your home.<br />
+            <b>Individualised Attention</b> – It will only ever be me and Jack with your dog to ensure they have the best experience.<br />
+            <b>Intro Visit</b> – A 10 minute pop in to make sure we’re good to go.<br />
+            <b>Personalised Walks</b> – I avoid unneccesary travel and plan unique routes, usually local to you.<br />
           </p>
           
           

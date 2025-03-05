@@ -11,7 +11,7 @@ const Safety = ({ images }) => {
        </p>
        
        <p className='mb-2'>
-       <b>Public liability Insured</b><br />Fully insured up to 5 million.
+       <b>Public Liability Insured</b><br />Fully insured up to £5 million.
        </p>
        
        <p>

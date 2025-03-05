@@ -23,7 +23,7 @@ const WhatYouGetTwo = ({ images }) => {
         <p className="line-spacing-2">
         <b>Healthy treats</b> – Natural options like dried fish, chicken, or beef, based on your dog’s diet.<br />
         <b>All dogs welcome</b> – Experienced with strong, large, or challenging dogs.<br />
-        <b>Updates & pictures</b> – You’ll receive a walk report with photos plus a 4K UHD video of the best bits, view our walks on <a href="https://www.youtube.com/@BIG_WALKS" target="_blank" rel="noopener noreferrer" className="text-[#B5A888] hover:text-red-600 underline" >YouTube.</a><br /> 
+        <b>Updates & pictures</b> – You’ll receive a walk report with photos plus a video of the best bits, view our walks on <a href="https://www.youtube.com/@BIG_WALKS" target="_blank" rel="noopener noreferrer" className="text-[#B5A888] hover:text-red-600 underline" >YouTube.</a><br /> 
           </p>
           </div>
         </div>
