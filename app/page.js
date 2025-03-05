@@ -10,19 +10,19 @@ export default function Home() {
       {
         src: "on-log.jpeg",
         alt: "Jake and Jack man and mini labradoodle balancing on a log",
-        className: "rounded object-cover border-2 border-black/90"
+        className: "rounded object-cover"
       },
       {
         src: "on-log-2.jpeg",
         alt: "Jake and Jack man and mini labradoodle balancing on a log",
-        className: "rounded object-cover border-2 border-black/90 mt-2"
+        className: "rounded object-cover mt-2"
       }
     ],
     intro2: [
       {
         src: "pup-patch.png",
         alt: "staffordshire bull terrier puppy",
-        className: "rounded w-10"
+        className: "rounded w-10 mt-1 mb-1"
       }
     ],
     priceList: [

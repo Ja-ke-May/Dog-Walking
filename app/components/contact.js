@@ -1,10 +1,10 @@
 const Contact = ({ images }) => {
     return (
-      <div className="relative flex max-w-lg bg-white/0 rounded p-4 items-center text-center">
+      <div className="relative flex flex-col max-w-lg bg-white/0 rounded p-4 items-center text-center">
         <div className="ml-2 p-2 bg-black/80 text-[#B5A888] brightness-125 rounded  md:text-lg lg:text-xl">
           <p className="m-2">Please contact me to discuss your requirements.</p>
-          
-          <div className="w-full flex justify-center mt-2 mb-2">
+          </div>
+          <div className="w-full flex justify-center mt-1 mb-1">
           {/* Use images prop for the profile picture */}
           <img 
             src={images[0].src} 
@@ -12,14 +12,15 @@ const Contact = ({ images }) => {
             className={images[0].className} 
             priority="true"
           />
-        
           </div>
-          <p className="brightness-125 mt-4">
+        <div className="ml-2 p-2 bg-black/80 text-[#B5A888] brightness-125 rounded  md:text-lg lg:text-xl">
+         
+          <p className="brightness-125">
             <a href="tel:+447780685832" className="text-[#B5A888] hover:text-[#9A9A7B] text-lg">
               07780685832
             </a>
           </p>
-          <p className="brightness-125 m-2">
+          <p className="brightness-125 m-1">
             <a href="mailto:jacob-may@outlook.com" className="text-[#B5A888] hover:text-[#9A9A7B] text-lg">
               Jacob-May@outlook.com
             </a>
@@ -30,6 +31,7 @@ const Contact = ({ images }) => {
             </a>
           </p>
         </div>
+        
       </div>
     );
   };
