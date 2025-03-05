@@ -2,11 +2,12 @@ import { useState } from "react";
 import Intro from "./intro";
 import Intro2 from "./intro2";
 import Contact from "./contact";
-// Add any other sections here...
+import PriceList from "./priceList";
 
 const Content = () => {
-  const sections = [<Intro />, <Intro2 />, <Contact />]; // Add more components here as needed
+  const sections = [<Intro />, <Intro2 />, <PriceList />, <Contact />,]; // Add more components here as needed
   const [currentSection, setCurrentSection] = useState(0); // Track current section index
+
 
   const handleNext = () => {
     setCurrentSection((prevSection) =>
@@ -21,11 +22,11 @@ const Content = () => {
   };
 
   const handleBook = () => {
-    setCurrentSection(2); 
+    setCurrentSection(3); 
   };
 
   return (
-    <div className="mt-10">
+    <div className="mt-4">
       {sections[currentSection]} {/* Render the current section */}
 
       <div className="w-full fixed bottom-0 left-0 mb-2 flex justify-between items-center mt-4 md:pr-20 lg:pr-40 xl:pr-80 md:pl-20 lg:pl-40 xl:pl-80">
