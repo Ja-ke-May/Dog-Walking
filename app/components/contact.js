@@ -10,6 +10,7 @@ const Contact = ({ images }) => {
             src={images[0].src} 
             alt={images[0].alt} 
             className={images[0].className} 
+            priority="true"
           />
         
           </div>

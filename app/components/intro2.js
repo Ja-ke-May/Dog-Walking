@@ -14,6 +14,7 @@ const Intro2 = ({ images }) => {
               src={image.src}
               alt={image.alt}
               className={image.className}
+              priority="true"
             />
           </div>
         ))}

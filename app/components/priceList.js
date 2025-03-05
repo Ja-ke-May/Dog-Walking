@@ -10,6 +10,7 @@ const PriceList = ({ images }) => {
             src={images[0].src} 
             alt={images[0].alt} 
             className={images[0].className} 
+            priority="true"
           />
         </div>
     
@@ -51,6 +52,7 @@ const PriceList = ({ images }) => {
             src={images[1].src} 
             alt={images[1].alt} 
             className={images[1].className} 
+            priority="true"
           />
         </div>
         
