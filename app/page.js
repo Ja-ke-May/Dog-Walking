@@ -62,7 +62,7 @@ export default function Home() {
       {
         src: "jack-flying.jpg",
         alt: "mini labradoodle flying above sea water",
-        className: "rounded object-cover max-w-1/2 mt-2"
+        className: "rounded object-cover max-w-50 mt-2"
       }
     ],
   };
