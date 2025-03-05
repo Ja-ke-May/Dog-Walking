@@ -6,11 +6,11 @@ const Safety = ({ images }) => {
       <div className="ml-2 mr-2 p-2 bg-black/80 text-[#B5A888] md:text-lg lg:text-xl brightness-125 rounded">
        
             
-       <p>
+       <p className='mb-2'>
        <b>First Aid Trained</b><br />Canine and human.
        </p>
        
-       <p>
+       <p className='mb-2'>
        <b>Public liability Insured</b><br />Fully insured up to 5 million.
        </p>
        
