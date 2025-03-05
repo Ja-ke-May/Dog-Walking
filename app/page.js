@@ -66,13 +66,13 @@ export default function Home() {
     <div className="">
      
 
-      {/* <Paws /> */}
+      <Paws />
 
       <div className="w-full h-screen flex flex-col items-center">
         <img
           src="../BIG_WALKS_green_brown_bg-removebg.png"
           alt="Paw Print"
-          className="fixed top-5 min-h-[20%] max-h-[30%]"
+          className="fixed top-0 min-h-[20%] max-h-[30%]"
         />
 
         <h1 className="hidden absolute top-28 left-1/2 -translate-x-1/2 text-[#B5A888] brightness-125 font-black text-3xl flex flex-col text-center">
