@@ -1,7 +1,10 @@
 const PriceList = ({ images }) => {
   return (
-      <>
+      <div className="flex flex-col">
+      <div className="">
           <h3 className="text-center font-bold text-xl">Price List</h3>
+          </div>
+          <div>
           <div className="relative flex max-w-lg bg-white/0 rounded p-2 items-center text-center">
 
               {/* Left Image */}
@@ -72,7 +75,8 @@ const PriceList = ({ images }) => {
               </div>
               
           </div>
-      </>
+          </div>
+      </div>
   );
 };
 

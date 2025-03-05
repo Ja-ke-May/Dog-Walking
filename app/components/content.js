@@ -1,71 +1,112 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSwipeable } from "react-swipeable";
+import { motion, AnimatePresence } from "framer-motion";
 import Intro from "./intro";
 import Intro2 from "./intro2";
 import Contact from "./contact";
 import PriceList from "./priceList";
 
 const Content = ({ images }) => {
-
-  
-
   const sections = [
     <Intro images={images.intro} />,
     <Intro2 images={images.intro2} />,
     <PriceList images={images.priceList} />,
     <Contact images={images.contact} />
   ];
-  
-  const [currentSection, setCurrentSection] = useState(0); // Track current section index
 
- 
+  const [currentSection, setCurrentSection] = useState(0);
+  const [direction, setDirection] = useState(1); // Track swipe direction
+  const [isSwiping, setIsSwiping] = useState(false); // Track if a swipe is in progress
+
   const handleNext = () => {
-    setCurrentSection((prevSection) =>
-      prevSection === sections.length - 1 ? 0 : prevSection + 1 // Loop back to the first section
-    );
+    setDirection(1);
+    setCurrentSection((prev) => (prev === sections.length - 1 ? 0 : prev + 1));
   };
 
   const handlePrevious = () => {
-    setCurrentSection((prevSection) =>
-      prevSection === 0 ? sections.length - 1 : prevSection - 1 // Loop back to the last section
-    );
+    setDirection(-1);
+    setCurrentSection((prev) => (prev === 0 ? sections.length - 1 : prev - 1));
   };
 
   const handleBook = () => {
-    setCurrentSection(3); 
+    setDirection(1);
+    setCurrentSection(3);
   };
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => {
+      if (!isSwiping) {
+        setIsSwiping(true);
+        setDirection(1); // Set direction for left swipe (moving to the next section)
+        setCurrentSection((prev) => (prev === sections.length - 1 ? 0 : prev + 1));
+      }
+    },
+    onSwipedRight: () => {
+      if (!isSwiping) {
+        setIsSwiping(true);
+        setDirection(-1); // Set direction for right swipe (moving to the previous section)
+        setCurrentSection((prev) => (prev === 0 ? sections.length - 1 : prev - 1));
+      }
+    },
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
+
+  // Add delay to reset the swiping state after the animation ends
+  useEffect(() => {
+    if (isSwiping) {
+      const timeout = setTimeout(() => {
+        setIsSwiping(false);
+      }, 500); // Match the transition duration
+      return () => clearTimeout(timeout);
+    }
+  }, [isSwiping]);
+
   return (
-    <div className="mt-4">
-      {sections[currentSection]} {/* Render the current section */}
+    <div {...handlers} className="absolute overflow-hidden w-full h-full">
+      <AnimatePresence mode="wait" custom={direction}>
+        <motion.div
+          key={currentSection}
+          custom={direction} 
+          initial={{ x: direction === 1 ? "100%" : "-100%", opacity: 0 }}
+          animate={{ x: "0%", opacity: 1 }}
+          exit={{ x: direction === 1 ? "-100%" : "100%", opacity: 0 }} 
+          transition={{ type: "tween", duration: 0.2 }} // Increased duration for smoother transition
+          className="absolute w-full h-full flex items-center justify-center"
+        >
+          {sections[currentSection]}
+        </motion.div>
+      </AnimatePresence>
 
-      <div className="w-full fixed bottom-0 left-0 mb-2 flex justify-between items-center mt-4 md:pr-20 lg:pr-40 xl:pr-80 md:pl-20 lg:pl-40 xl:pl-80">
-        
-
-       
-
+      {/* Navigation Buttons */}
+      <div className="w-full fixed bottom-0 left-0 mb-2 flex justify-between items-center md:pr-20 lg:pr-40 xl:pr-80 md:pl-20 lg:pl-40 xl:pl-80">
+        {/* Previous Button */}
         <div className="cursor-pointer relative flex flex-col items-center" onClick={handlePrevious}>
-  <p className="text-[#EAD7A3] brightness-125 ml-2 z-10 mb-1">Previous</p>
-  <img
-    src="../paw-space-nb.png"
-    alt="Previous"
-    className="h-16 w-16 rotate-270 brightness-125"
-  />
-</div>
+          <p className="text-[#EAD7A3] brightness-125 ml-2 z-10 mb-1">Previous</p>
+          <img
+            src="../paw-space-nb.png"
+            alt="Previous"
+            className="h-16 w-16 rotate-270 brightness-125"
+          />
+        </div>
 
-<p className="text-center max-w-20 font-bold text-[#B5A888] bg-black/90 rounded-full p-4 brightness-125 border-2 border-white/20 cursor-pointer"
-        onClick={handleBook}>
+        {/* Booking Button */}
+        <p
+          className="text-center max-w-20 font-bold text-[#B5A888] bg-black/90 rounded-full p-4 brightness-125 border-2 border-white/20 cursor-pointer"
+          onClick={handleBook}
+        >
           BOOK A BIG WALK NOW!
         </p>
 
-{/* Next Button */}
-<div className="cursor-pointer relative flex flex-col items-center" onClick={handleNext}>
-  <p className="text-[#EAD7A3] brightness-125 z-10 mb-1">Next</p>
-  <img
-    src="../paw-space-nb.png"
-    alt="Next"
-    className="h-16 w-16 rotate-90 brightness-125"
-  />
-</div>
+        {/* Next Button */}
+        <div className="cursor-pointer relative flex flex-col items-center" onClick={handleNext}>
+          <p className="text-[#EAD7A3] brightness-125 z-10 mb-1">Next</p>
+          <img
+            src="../paw-space-nb.png"
+            alt="Next"
+            className="h-16 w-16 rotate-90 brightness-125"
+          />
+        </div>
       </div>
     </div>
   );
