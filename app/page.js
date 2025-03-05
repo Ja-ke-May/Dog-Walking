@@ -1,8 +1,8 @@
 "use client";
 
-import Head from 'next/head';
 import Paws from "./components/paws";
 import Content from "./components/content";
+import { useEffect } from 'react';
 
 export default function Home() {
   const images = {
@@ -46,17 +46,25 @@ export default function Home() {
     ]
   };
 
+  useEffect(() => {
+    const imagesToPreload = [
+      "on-log.jpeg",
+      "on-log-2.jpeg",
+      "pup-patch.png",
+      "Butch.jpg",
+      "Candy.jpg",
+      "Jacob May.jpg"
+    ];
+  
+    imagesToPreload.forEach((src) => {
+      const img = new Image();
+      img.src = `/${src}`;  // Adjust path to match your actual public folder structure
+    });
+  }, []);
+
   return (
     <>
-      <Head>
-        {/* Preload images */}
-        <link rel="preload" href="on-log.jpeg" as="image" />
-        <link rel="preload" href="on-log-2.jpeg" as="image" />
-        <link rel="preload" href="pup-patch.png" as="image" />
-        <link rel="preload" href="Butch.jpg" as="image" />
-        <link rel="preload" href="Candy.jpg" as="image" />
-        <link rel="preload" href="Jacob May.jpg" as="image" />
-      </Head>
+     
 
       <Paws />
 
