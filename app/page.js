@@ -8,12 +8,12 @@ export default function Home() {
   const images = {
     intro: [
       {
-        src: "../on-log.jpeg",
+        src: "on-log.jpeg",
         alt: "Jake and Jack man and mini labradoodle balancing on a log",
         className: "rounded object-cover border-2 border-black/90"
       },
       {
-        src: "../on-log-2.jpeg",
+        src: "on-log-2.jpeg",
         alt: "Jake and Jack man and mini labradoodle balancing on a log",
         className: "rounded object-cover border-2 border-black/90 mt-2"
       }
@@ -27,12 +27,12 @@ export default function Home() {
     ],
     priceList: [
       {
-        src: "/Butch.jpg",
+        src: "Butch.jpg",
         alt: "Butch",
         className: "max-w-full md:min-w-20 lg:min-w-30 rounded-full"
       },
       {
-        src: "/Candy.jpg",
+        src: "Candy.jpg",
         alt: "Candy",
         className: "max-w-full md:min-w-20 lg:min-w-30 rounded-full"
       }
@@ -50,11 +50,11 @@ export default function Home() {
     <>
       <Head>
         {/* Preload images */}
-        <link rel="preload" href="../on-log.jpeg" as="image" />
-        <link rel="preload" href="../on-log-2.jpeg" as="image" />
+        <link rel="preload" href="on-log.jpeg" as="image" />
+        <link rel="preload" href="on-log-2.jpeg" as="image" />
         <link rel="preload" href="pup-patch.png" as="image" />
-        <link rel="preload" href="/Butch.jpg" as="image" />
-        <link rel="preload" href="/Candy.jpg" as="image" />
+        <link rel="preload" href="Butch.jpg" as="image" />
+        <link rel="preload" href="Candy.jpg" as="image" />
         <link rel="preload" href="Jacob May.jpg" as="image" />
       </Head>
 
