@@ -89,8 +89,8 @@ export default function Home() {
   return (
     <div className="">
      
-{/* 
-      <Paws /> */}
+
+      <Paws />
 
       <div className="w-full h-screen flex flex-col items-center">
         <img
