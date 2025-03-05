@@ -10,7 +10,7 @@ const Intro2 = () => {
           <img 
             src="pup-patch.png" 
             alt="staffordshire bull terrier puppy" 
-            className="rounded w-10 md:w-20"
+            className="rounded w-10"
           />
           </div>
           <p>It will only ever be me and Jack with your dog or dogs to ensure they have the most beneficial time. I will come for a short visit initially, 10 minutes or so, to confirm we are good to go. 
