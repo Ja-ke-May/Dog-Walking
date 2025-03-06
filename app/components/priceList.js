@@ -45,7 +45,7 @@ const PriceList = ({ images }) => {
                   <div className="flex items-center justify-center p-4 bg-black/80 text-[#B5A888] brightness-125 rounded md:text-lg">
                       <div className="whitespace-normal text-center">
                           <span className="">
-                              <span className="font-bold">3/4h</span> Hike
+                              <span className="font-bold">4h</span> Hike
                               <hr className="mt-2 border-t border-[#B5A888] w-2/3 mx-auto" />
                               <span className="font-bold">£80</span>
                           </span>
