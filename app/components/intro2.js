@@ -22,7 +22,7 @@ const Intro2 = ({ images }) => {
         ))}
 <div className="ml-2 mr-2 p-2 bg-black/80 text-[#B5A888] brightness-125 rounded md:text-lg lg:text-xl">
         <p>
-          It will only ever be me and Jack with your dog or dogs to ensure they have the most beneficial time.
+          It will only ever be me and Jack with your dog(s) to ensure they have the most beneficial time.
         </p>
         </div>
      </div>
