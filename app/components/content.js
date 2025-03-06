@@ -70,7 +70,7 @@ const Content = ({ images }) => {
   }, [isSwiping]);
 
   return (
-    <div {...handlers} className="fixed top-0 left-0 w-full h-full">
+    <div {...handlers} className="fixed top-0 left-0 w-full h-full mt-4">
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
           key={currentSection}
