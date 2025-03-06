@@ -11,7 +11,7 @@ const WhatYouGet = ({ images }) => {
           
             
             <p className="">
-            <b>Individualised Attention</b> – It will only ever be me and Jack with your dog(s) to ensure they have the best experience.<br />
+            <b>Individualised Attention</b> – It will only ever be me and Jack with your dog(s) so they have the best care possible.<br />
             <b>Personalised Walks</b> – I avoid unneccesary travel and plan unique routes, usually local to you.<br />
             <b>Intro Visit</b> – A 10 minute pop in to make sure we’re good to go.
           </p>
