@@ -96,10 +96,10 @@ export default function Home() {
         <img
           src="../BIG_WALKS_green_brown_bg-removebg.png"
           alt="Paw Print"
-          className="fixed top-0 min-h-[12%] max-h-[20%]"
+          className="fixed top-0 min-h-[15%] max-h-[25%]"
         />
 
-        <h1 className="hidden absolute top-28 left-1/2 -translate-x-1/2 text-[#B5A888] brightness-125 font-black text-3xl flex flex-col text-center">
+        <h1 className="hidden absolute top-20 left-1/2 -translate-x-1/2 text-[#B5A888] brightness-125 font-black text-3xl flex flex-col text-center">
           BIG
           <span>WALKS</span>
         </h1>
