@@ -99,7 +99,7 @@ const Content = ({ images }) => {
 
         {/* Booking Button */}
         <p
-          className="text-center max-w-18 font-bold text-[#B5A888] bg-black/90 rounded-full p-2 brightness-125 border-2 border-white/20 cursor-pointer"
+          className="text-center mb-1 max-w-18 font-bold text-[#B5A888] bg-black/90 rounded-full p-2 brightness-125 border-2 border-white/20 cursor-pointer"
           onClick={handleBook}
         >
           BOOK A BIG WALK NOW!
