@@ -36,7 +36,7 @@ const PriceList = ({ images }) => {
                           <span className="">
                               <span className="font-bold">90m</span> <br /> Huge Walk
                               <hr className="mt-2 border-t border-[#B5A888] w-2/3 mx-auto" />
-                              <span className="font-bold">£30</span>
+                              <span className="font-bold">£40</span>
                           </span>
                       </div>
                   </div>
@@ -47,7 +47,7 @@ const PriceList = ({ images }) => {
                           <span className="">
                               <span className="font-bold">3/4h</span> Hike
                               <hr className="mt-2 border-t border-[#B5A888] w-2/3 mx-auto" />
-                              <span className="font-bold">£60</span>
+                              <span className="font-bold">£80</span>
                           </span>
                       </div>
                   </div>
