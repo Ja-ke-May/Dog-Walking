@@ -111,7 +111,7 @@ const SignUpForm = () => {
                         <option value="" disabled>
                             Dog's Age
                         </option>
-                        <option value="0-6 months">0-6 months</option>
+                        <option value="0 - 6 months">0 - 6 months</option>
                         <option value="6 - 2 years">6 - 2 years</option>
                         <option value="2+">2+ years</option>
                     </select>
