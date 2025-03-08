@@ -74,7 +74,7 @@ const SignUpForm = () => {
     };
 
     return (
-        <div className="relative flex max-w-lg bg-white/0 rounded p-4 flex-col items-center mt-20 md:mt-40 lg:mt-50">
+        <div className="relative flex max-w-lg bg-white/0 rounded p-4 flex-col items-center mt-2">
             <div className="p-2 bg-black/80 text-[#B5A888] md:text-lg lg:text-xl brightness-125 rounded w-full">
                 <h3 className="text-center font-bold text-lg md:text-xl mb-1 md:mb-2">Sign Up</h3>
 
