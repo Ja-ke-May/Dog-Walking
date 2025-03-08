@@ -1,32 +1,187 @@
 import { useState } from "react";
+import emailjs from "emailjs-com";
 
 const SignUpForm = () => {
     const [showTerms, setShowTerms] = useState(false);
+    const [dogAge, setDogAge] = useState("");
+    const [formData, setFormData] = useState({
+        name: "",
+        dogName: "",
+        breed: "",
+        healthConditions: "",
+        email: "",
+        phone: "",
+        terms: false,
+    });
+
+    const handleAgeChange = (event) => {
+        setDogAge(event.target.value);
+    };
+
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: type === "checkbox" ? checked : value, 
+        }));
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if (!formData.terms) {
+            alert("You must accept the terms and conditions to proceed.");
+            return;
+        }
+
+        const templateParams = {
+            to_name: "Jake",
+            name: formData.name,
+            dogName: formData.dogName,
+            dogAge: dogAge,
+            breed: formData.breed,
+            healthConditions: formData.healthConditions,
+            email: formData.email,
+            phone: formData.phone,
+            terms: formData.terms ? "Accepted" : "Not Accepted", 
+        };
+
+        emailjs
+            .send(
+                "service_e1ghwi9",
+                "template_hjhdo2y",
+                templateParams,
+                "wS6m3H08qSoTmsjN8"
+            )
+            .then(
+                (response) => {
+                    alert("Message sent successfully!");
+                    setFormData({
+                        name: "",
+                        dogName: "",
+                        breed: "",
+                        healthConditions: "",
+                        email: "",
+                        phone: "",
+                        terms: false, 
+                    });
+                },
+                (error) => {
+                    alert("Failed to send the message. Please try again.");
+                }
+            );
+    };
 
     return (
-        <div className="relative flex max-w-lg bg-white/0 rounded p-4 flex-col items-center mt-20 md:mt-40 lg:mt-50"> 
+        <div className="relative flex max-w-lg bg-white/0 rounded p-4 flex-col items-center mt-20 md:mt-40 lg:mt-50">
             <div className="p-2 bg-black/80 text-[#B5A888] md:text-lg lg:text-xl brightness-125 rounded w-full">
                 <h3 className="text-center font-bold text-lg md:text-xl mb-1 md:mb-2">Sign Up</h3>
 
                 <p className="mb-3 md:mb-4">Join the BIG WALKS pack! Fill out this form and I'll be in touch to schedule your dog's next adventure.</p>
-                
-                <form className="flex flex-col gap-3">
-                    <input type="text" placeholder="Your Name" className="p-2 rounded bg-white text-black placeholder-gray-700" required />
-                    <input type="date" className="p-2 rounded bg-white text-black placeholder-gray-700" required aria-label="Your Date of Birth" />
-                    <label className="text-sm text-[#B5A888]">Your Date of Birth</label>
-                    <input type="text" placeholder="Dog's Name" className="p-2 rounded bg-white text-black placeholder-gray-700" required />
-                    <input type="date" className="p-2 rounded bg-white text-black placeholder-gray-700" required aria-label="Dog's Date of Birth" />
-                    <label className="text-sm text-[#B5A888]">Dog's Date of Birth</label>
-                    <input type="text" placeholder="Breed" className="p-2 rounded bg-white text-black placeholder-gray-700" required />
-                    <input type="text" placeholder="Dog Health Conditions" className="p-2 rounded bg-white text-black placeholder-gray-700" />
-                    <input type="text" placeholder="Phone or Email" className="p-2 rounded bg-white text-black placeholder-gray-700" required />
-                    
+
+                <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="Your Name"
+                        className="p-2 rounded bg-white text-black placeholder-gray-700"
+                        required
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                    />
+
+                    <input
+                        type="text"
+                        placeholder="Dog's Name"
+                        className="p-2 rounded bg-white text-black placeholder-gray-700"
+                        required
+                        name="dogName"
+                        value={formData.dogName}
+                        onChange={handleChange}
+                    />
+
+                    <select
+                        className="p-2 rounded bg-white text-black placeholder-gray-700"
+                        required
+                        aria-label="Dog's Age"
+                        value={dogAge}
+                        onChange={handleAgeChange}
+                    >
+                        <option value="" disabled>
+                            Select Dog's Age
+                        </option>
+                        <option value="0-6 months">0-6 months</option>
+                        <option value="6 - 2 years">6 - 2 years</option>
+                        <option value="2+">2+ years</option>
+                    </select>
+
+                    <input
+                        type="text"
+                        placeholder="Breed"
+                        className="p-2 rounded bg-white text-black placeholder-gray-700"
+                        required
+                        name="breed"
+                        value={formData.breed}
+                        onChange={handleChange}
+                    />
+
+                    <input
+                        type="text"
+                        placeholder="Dog Health Conditions"
+                        className="p-2 rounded bg-white text-black placeholder-gray-700"
+                        name="healthConditions"
+                        value={formData.healthConditions}
+                        onChange={handleChange}
+                    />
+
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        className="p-2 rounded bg-white text-black placeholder-gray-700"
+                        required
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                    />
+
+                    <input
+                        type="tel"
+                        placeholder="Phone"
+                        className="p-2 rounded bg-white text-black placeholder-gray-700"
+                        required
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                    />
+
                     <div className="flex items-center gap-2">
-                        <input type="checkbox" id="terms" className="w-4 h-4" required />
-                        <label htmlFor="terms" className="text-sm text-[#B5A888]">I agree to the <span className="underline cursor-pointer" onClick={() => setShowTerms(true)}>Terms and Conditions</span></label>
+                        <input 
+                        type="checkbox"
+                            id="terms"
+                            className="w-4 h-4"
+                            name="terms"
+                            checked={formData.terms}
+                            onChange={handleChange}
+                            required 
+                            />
+                        <label htmlFor="terms" className="text-sm text-[#B5A888]">
+                            I agree to the{" "}
+                            <span
+                                className="underline cursor-pointer"
+                                onClick={() => setShowTerms(true)}
+                            >
+                                Terms and Conditions
+                            </span>
+                        </label>
                     </div>
-                    
-                    <button type="submit" className="mt-2 p-2 bg-[#B5A888] text-black font-bold rounded hover:bg-[#a49376]">Sign Up</button>
+
+                    <button
+                        type="submit"
+                        className="mt-2 p-2 bg-[#B5A888] text-black font-bold rounded hover:bg-[#a49376]"
+                    >
+                        Sign Up
+                    </button>
                 </form>
             </div>
             
