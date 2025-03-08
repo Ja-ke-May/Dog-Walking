@@ -109,7 +109,7 @@ const SignUpForm = () => {
                         onChange={handleAgeChange}
                     >
                         <option value="" disabled>
-                            Select Dog's Age
+                            Dog's Age
                         </option>
                         <option value="0-6 months">0-6 months</option>
                         <option value="6 - 2 years">6 - 2 years</option>
