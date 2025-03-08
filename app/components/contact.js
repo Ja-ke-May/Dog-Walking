@@ -24,8 +24,8 @@ const Contact = ({ images }) => {
             </a>
           </p>
           <p className="brightness-125 m-1">
-            <a href="mailto:jacob-may@outlook.com" className="text-[#B5A888] hover:text-[#9A9A7B] text-lg">
-              Jacob-May@outlook.com
+            <a href="mailto:Big_Walks@outlook.com" className="text-[#B5A888] hover:text-[#9A9A7B] text-lg">
+              Big_Walks@outlook.com
             </a>
           </p>
           <p className="brightness-125 m-2">
