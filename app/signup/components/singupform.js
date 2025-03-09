@@ -204,7 +204,7 @@ const SignUpForm = () => {
                 - Walks are offered in the following durations:<br />
                 - **Big Walks**: 45 minutes<br />
                 - **Huge Walks**: 90 minutes<br />
-                - **Hikes**: 4-hour sessions<br />
+                - **Hikes**: 3/4-hour sessions<br />
                 - **10-Minute Visits**: Quick breaks for letting your dog out or other short visits.<br />
                 - I will aim to stick to the agreed walk duration as closely as possible, but timing may vary depending on the dog’s needs or unexpected circumstances.<br />
                 - Pick-up and drop-off times will be arranged with each client in advance.<br />
