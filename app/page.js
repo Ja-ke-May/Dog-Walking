@@ -103,7 +103,7 @@ export default function Home() {
      {!loggedInUser && (
         <button
           onClick={() => setShowLogin(true)}
-          className="fixed top-4 right-4 px-4 py-2 bg-[#B5A888] text-white rounded-full md:text-lg shadow-md hover:bg-[#9c8a6d] transition z-50 cursor-pointer"
+          className="fixed top-2 md:top-4 right-2 md:right-4 px-4 py-2 bg-[#B5A888] text-white rounded-full md:text-lg shadow-md hover:bg-[#9c8a6d] transition z-50 cursor-pointer"
         >
           Log In
         </button>
