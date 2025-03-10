@@ -63,7 +63,7 @@ const PriceList = ({ images }) => {
                       </div>
                   </div>
 
-                  <div className="flex items-center justify-center p-4 bg-black/80 text-[#B5A888] brightness-125 rounded md:text-lg col-span-2">
+                  <div className="flex items-center justify-center bg-black/80 text-[#B5A888] brightness-125 rounded text-sm col-span-2">
                       <div className="whitespace-normal text-center">
                           <p>£10 per additional dog(same home only)</p>
                               
