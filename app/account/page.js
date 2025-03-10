@@ -87,12 +87,15 @@ export default function AccountPage() {
           >
             {user.walkHistory.length > 0 ? (
               user.walkHistory.map((walk, index) => (
+                <div 
+                key={index}
+                >
+                <h4 className="text-xl md:text-2xl lg:text-3xl mb-2">{walk.title}</h4>
                 <div
-                  key={index}
                   className="md:max-w-[100%] flex flex-col md:flex-row  items-center justify-center bg-black/80 pl-4 pr-4 md:pl-10 md:pr-10 text-[#B5A888] text-lg rounded "
                 >
                   
-                
+                 
                     <img
                      src={`../../${user.userID}/${walk.walkImage}`}
                       alt={`Walk on ${walk.date}`}
@@ -101,8 +104,8 @@ export default function AccountPage() {
                   
 
                   
-                  <div className="w-full mt-2 mb-2 md:mr-2 md:ml-4 text-center md:text-right md:text-xl lg:text-2xl">
-                    <h4 className="text-xl md:text-2xl lg:text-3xl mb-2">{walk.title}</h4>
+                  <div className="w-full  mb-2 md:mr-2 md:ml-4 text-center md:text-right md:text-xl lg:text-2xl">
+                  
                     <p><strong>Date:</strong> {walk.date}</p>
                     <p><strong>Walk Type:</strong> {walk.walkType}</p>
                     <p><strong>Duration:</strong> {walk.duration}</p>
@@ -112,7 +115,7 @@ export default function AccountPage() {
                       href={`../reports/name/${walk.report}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-100 hover:underline hover:text-blue-500 mt-2 block"
+                      className="text-gray-100 hover:underline hover:text-blue-500 mt-2 md:mt-4 block"
                     >
                      Walk Report
                     </a>
@@ -131,6 +134,7 @@ export default function AccountPage() {
                       </div>
                     )}
                   </div>
+                </div>
                 </div>
               ))
             ) : (
