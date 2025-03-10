@@ -12,7 +12,7 @@ export default function LoginModal({ isOpen, onClose, onSuccess }) {
     const accounts = JSON.parse(process.env.NEXT_PUBLIC_ACCOUNTS || "[]");
 
     const user = accounts.find(
-      (account) => account.email.toLowerCase() === email && account.password === password // Compare in lowercase
+      (account) => account.email.toLowerCase() === email && account.password === password 
     );
   
     if (user) {
