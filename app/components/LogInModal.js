@@ -6,13 +6,13 @@ export default function LoginModal({ isOpen, onClose, onSuccess }) {
   const handleLogin = (e) => {
     e.preventDefault(); 
 
-    const email = e.target.email.value; 
+    const email = e.target.email.value.trim().toLowerCase();
     const password = e.target.password.value; 
 
     const accounts = JSON.parse(process.env.NEXT_PUBLIC_ACCOUNTS || "[]");
 
     const user = accounts.find(
-      (account) => account.email === email && account.password === password
+      (account) => account.email.toLowerCase() === email && account.password === password // Compare in lowercase
     );
   
     if (user) {
