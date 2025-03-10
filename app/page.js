@@ -2,9 +2,13 @@
 
 import Paws from "./components/paws";
 import Content from "./components/content";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import LoginModal from "./components/LogInModal";
 
 export default function Home() {
+  const [showLogin, setShowLogin] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+
   const images = {
     intro: [
       {
@@ -68,6 +72,12 @@ export default function Home() {
   };
 
   useEffect(() => {
+
+    const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (storedUser) {
+      setLoggedInUser(storedUser);
+    }
+
     const imagesToPreload = [
       "on-log.jpeg",
       "on-log-2.jpeg",
@@ -86,10 +96,39 @@ export default function Home() {
     });
   }, []);
 
+  
   return (
     <div className="">
      
+     {!loggedInUser && (
+        <button
+          onClick={() => setShowLogin(true)}
+          className="fixed top-4 right-4 px-4 py-2 bg-[#B5A888] text-white rounded-full md:text-lg shadow-md hover:bg-[#9c8a6d] transition z-50 cursor-pointer"
+        >
+          Log In
+        </button>
+      )}
 
+{loggedInUser && (
+        <button
+          onClick={() => window.location.href = "/account"} // Redirect to /account page
+          className="fixed top-4 right-4 px-2 py-1 md:px-4 md:py-2 bg-[#B5A888] text-white rounded-full text-sm md:text-lg shadow-md hover:bg-[#9c8a6d] transition z-50"
+        >
+          View Walks
+        </button>
+      )}
+
+
+      <LoginModal
+        isOpen={showLogin}
+        onClose={() => setShowLogin(false)}
+        onSuccess={(user) => {
+          setLoggedInUser(user); 
+          localStorage.setItem('loggedInUser', JSON.stringify(user));
+          window.location.href = "/account";  
+        }}
+      />
+      
       <Paws />
 
       <div className="w-full h-screen flex flex-col items-center">

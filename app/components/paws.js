@@ -113,7 +113,7 @@ const Paws = () => {
         opacity: visible ? 1 : 0,
         transition: "opacity 2s ease-in-out",
       }}
-      className="w-full h-full fixed"
+      className="w-full h-full fixed pointer-events-none z-[-1]"
     >
       {images.map((image) => (
         <div
