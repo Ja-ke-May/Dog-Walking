@@ -102,6 +102,7 @@ export default function AccountPage() {
 
                   
                   <div className="w-full mt-2 mb-2 md:mr-2 md:ml-4 text-center md:text-right md:text-xl lg:text-2xl">
+                    <h4 className="text-xl md:text-2xl lg:text-3xl mb-2">{walk.title}</h4>
                     <p><strong>Date:</strong> {walk.date}</p>
                     <p><strong>Walk Type:</strong> {walk.walkType}</p>
                     <p><strong>Duration:</strong> {walk.duration}</p>
