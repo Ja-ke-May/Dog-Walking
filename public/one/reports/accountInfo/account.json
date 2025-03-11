@@ -1,7 +1,7 @@
 [ 
     {
       "userID": "one",
-      "email": "big_walks@outlook.com",
+      "username": "bigwalks",
       "password": "password",
       "name": "Jacob May",
       "dog": {
@@ -45,7 +45,7 @@
     },
     {
       "userID": "two",
-      "email": "jacob-may@outlook.com",
+      "username": "jacobmay",
       "password": "password",
       "name": "Jacob May",
       "dog": {

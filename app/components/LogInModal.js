@@ -6,7 +6,7 @@ export default function LoginModal({ isOpen, onClose, onSuccess }) {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const email = e.target.email.value.trim().toLowerCase();
+    const username = e.target.username.value.trim().toLowerCase();
     const password = e.target.password.value;
 
     let accounts = [];
@@ -25,7 +25,7 @@ export default function LoginModal({ isOpen, onClose, onSuccess }) {
     }
 
     const user = accounts.find(
-      (account) => account.email.toLowerCase() === email && account.password === password
+      (account) => account.username.toLowerCase() === username && account.password === password
     );
 
     if (user) {
@@ -35,7 +35,7 @@ export default function LoginModal({ isOpen, onClose, onSuccess }) {
       onClose();
     } else {
       console.log("Invalid login");
-      setError("Invalid email or password");
+      setError("Invalid username or password");
     }
   };
 
@@ -56,9 +56,9 @@ export default function LoginModal({ isOpen, onClose, onSuccess }) {
 
         <form onSubmit={handleLogin} className="space-y-4">
           <input
-            name="email"  
+            name="username"  
             type="text"
-            placeholder="Email or Phone Number"
+            placeholder="Username"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#B5A888]"
           />
           <input

@@ -18,13 +18,21 @@ const ReportForm = () => {
     const year = d.getFullYear();
     return `${day}/${month}/${year}`;
   };
+
+  function getBase64Image(img) {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0);
+    return canvas.toDataURL();
+  }
   
   const generatePDF = () => {
     const doc = new jsPDF("p", "mm", "a4");
     const width = 210;
     const height = 297;
   
-    // Background gradient
     const colorStops = [
       { color: "#B5A888", yPos: 0 },
       { color: "#9A9A7B", yPos: 99 },
@@ -38,117 +46,140 @@ const ReportForm = () => {
   
     // Title
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(20);
-    doc.setTextColor(255, 255, 255);
-    const topMargin = 1;
+    doc.setFontSize(30);
+    doc.setTextColor(0, 0, 0);
+    const topMargin = 6;
     const titleY = topMargin + 19;
-    doc.text("Big Walk Report", 105, titleY, { align: "center" });
+    doc.text("Walk Report", 105, titleY, { align: "center" });
   
-    // Add dog image if available
+    //dog photo
     if (photo) {
-      const image = URL.createObjectURL(photo);
-      const imgX = 10;
-      const imgY = 35;
-      const imgWidth = 60;
-      const imgHeight = 60;
-      const imgRadius = 10;
+      const image = new Image();
+      const imageURL = URL.createObjectURL(photo);
+      
+      image.src = imageURL;
+    
+      image.onload = function () {
+        const imgWidth = 60; 
+        const imgHeight = (image.height / image.width) * imgWidth;
+    
+        if (imgWidth <= 0 || imgHeight <= 0 || isNaN(imgWidth) || isNaN(imgHeight)) {
+          console.error("Invalid image dimensions:", imgWidth, imgHeight);
+          return;
+        }
+    
+        const imgX = 10;
+        const imgY = 2;
+    
+        // Ensure the image format is correctly set
+        let imgFormat = "JPEG"; 
+        const fileExtension = photo.name.split(".").pop().toLowerCase();
+        if (fileExtension === "png") {
+          imgFormat = "PNG";
+        } else if (fileExtension === "gif") {
+          imgFormat = "GIF";
+        }
+    
+        // Use base64 encoding to add the image
+        const imgBase64 = getBase64Image(image);
+    
+        // Add image using base64 data
+        doc.addImage(imgBase64, imgFormat, imgX, imgY, imgWidth, imgHeight, undefined, "FAST");
+    
   
-      doc.setFillColor(255, 255, 255);
-      doc.roundedRect(imgX, imgY, imgWidth, imgHeight, imgRadius, imgRadius, "F");
+        
+        const formattedWalkDate = formatDateUK(walkDate);
   
-      doc.addImage(image, "JPEG", imgX, imgY, imgWidth, imgHeight, undefined, "FAST");
+        const nameDateTimeX = 80;
+        const nameDateTimeY = 55;
+        const nameDateTimeWidth = 70; 
+        const nameDateTimeHeight = 30;
+        const nameDateTimeRadius = 8;
+  
+        
+        doc.setFillColor(0, 0, 0);
+        doc.roundedRect(nameDateTimeX - 5, nameDateTimeY - 5, nameDateTimeWidth + 10, nameDateTimeHeight + 10, nameDateTimeRadius, nameDateTimeRadius, "F");
+  
+        
+        doc.setFontSize(18);
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(255, 255, 255);
+        doc.text(`Name: ${dogName}`, nameDateTimeX, nameDateTimeY + 8);
+        doc.text(`Date: ${formattedWalkDate}`, nameDateTimeX, nameDateTimeY + 16);
+        doc.text(`Time: ${walkTime}`, nameDateTimeX, nameDateTimeY + 24);
+  
+        
+        const toiletBoxX = 165;
+        const toiletBoxY = 55;
+        const toiletBoxWidth = 30;
+        const toiletBoxHeight = 30;
+        const toiletBoxRadius = 8;
+  
+    
+        doc.setFillColor(0, 0, 0);
+        doc.roundedRect(toiletBoxX - 5, toiletBoxY - 5, toiletBoxWidth + 10, toiletBoxHeight + 10, toiletBoxRadius, toiletBoxRadius, "F");
+  
+        doc.setFontSize(16);
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(255, 255, 255);
+        doc.text("Toilet:", toiletBoxX, toiletBoxY + 8);
+  
+        doc.setFontSize(16);
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(255, 255, 255);
+  
+        if (toilet1) {
+          doc.setTextColor(0, 255, 0); 
+        } else {
+          doc.setTextColor(255, 0, 0); 
+        }
+        doc.text(`T1: ${toilet1 ? "Yes" : "No"}`, toiletBoxX, toiletBoxY + 18);
+  
+        if (toilet2) {
+          doc.setTextColor(0, 255, 0);
+        } else {
+          doc.setTextColor(255, 0, 0); 
+        }
+        doc.text(`T2: ${toilet2 ? "Yes" : "No"}`, toiletBoxX, toiletBoxY + 26);
+  
+        const commentBoxX = 10;
+        const commentBoxY = 110;
+        const commentBoxWidth = 190;
+        const commentBoxHeight = 70;
+        const cornerRadius = 8;
+  
+        doc.setFillColor(0, 0, 0);
+        doc.roundedRect(commentBoxX, commentBoxY, commentBoxWidth, commentBoxHeight, cornerRadius, cornerRadius, "F");
+  
+        doc.setFontSize(18);
+        doc.setTextColor(255, 255, 255);
+        doc.text("Comments:", commentBoxX + 10, commentBoxY + 13);
+        doc.setFontSize(16);
+        doc.text(comments, commentBoxX + 10, commentBoxY + 22, { maxWidth: commentBoxWidth - 20 });
+  
+        const logo = "../../BIG_WALKS_green_brown_bg-removebg.png";
+        const marginBottom = 5;
+  
+        const availableHeight = height - (commentBoxY + commentBoxHeight) - marginBottom;
+        const logoWidth = width;
+        const logoHeight = availableHeight > 0 ? availableHeight : 30;
+  
+        const logoX = 0;
+        const logoY = commentBoxY + commentBoxHeight;
+  
+        doc.addImage(logo, "PNG", logoX, logoY, logoWidth, logoHeight);
+
+        const smallLogo = "../../BIG_WALKS_green_brown_bg-removebg.png"; 
+      const smallLogoWidth = 40;
+      const smallLogoHeight = 30;
+      const smallLogoX = width - smallLogoWidth - 6; 
+      const smallLogoY = 6; 
+
+      doc.addImage(smallLogo, "PNG", smallLogoX, smallLogoY, smallLogoWidth, smallLogoHeight);
+  
+        doc.save("Big_Walk_Report.pdf");
+      };
     }
-  
-    // Format the walk date to UK format
-    const formattedWalkDate = formatDateUK(walkDate);
-  
-    // Position for the "Name," "Date," and "Time" box (adjusted width)
-    const nameDateTimeX = 80;
-    const nameDateTimeY = 50;
-    const nameDateTimeWidth = 70;  // Reduced width
-    const nameDateTimeHeight = 30;
-    const nameDateTimeRadius = 8;
-  
-    // Background for Name, Date, Time section (black rounded corner)
-    doc.setFillColor(0, 0, 0);
-    doc.roundedRect(nameDateTimeX - 5, nameDateTimeY - 5, nameDateTimeWidth + 10, nameDateTimeHeight + 10, nameDateTimeRadius, nameDateTimeRadius, "F");
-  
-    // Add the Name, Date, and Time text inside the background
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(255, 255, 255);
-    doc.text(`Name: ${dogName}`, nameDateTimeX, nameDateTimeY + 8);
-    doc.text(`Date: ${formattedWalkDate}`, nameDateTimeX, nameDateTimeY + 16);
-    doc.text(`Time: ${walkTime}`, nameDateTimeX, nameDateTimeY + 24);
-  
-    // Position for the "Toilet Info" box
-    const toiletBoxX = 160; 
-    const toiletBoxY = 50;
-    const toiletBoxWidth = 30;
-    const toiletBoxHeight = 30;
-    const toiletBoxRadius = 8;
-  
-    // Background for Toilet Info section (black rounded corner)
-    doc.setFillColor(0, 0, 0);
-    doc.roundedRect(toiletBoxX - 5, toiletBoxY - 5, toiletBoxWidth + 10, toiletBoxHeight + 10, toiletBoxRadius, toiletBoxRadius, "F");
-  
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(255, 255, 255); 
-    doc.text("Toilet:", toiletBoxX, toiletBoxY + 8);
-  
-    // Add the Toilet info text below the title
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(255, 255, 255);
-  
-    // Toilet 1 info with color change
-    if (toilet1) {
-      doc.setTextColor(0, 255, 0); // Green for Yes
-    } else {
-      doc.setTextColor(255, 0, 0); // Red for No
-    }
-    doc.text(`T1: ${toilet1 ? "Yes" : "No"}`, toiletBoxX, toiletBoxY + 18);
-  
-    // Toilet 2 info with color change
-    if (toilet2) {
-      doc.setTextColor(0, 255, 0); // Green for Yes
-    } else {
-      doc.setTextColor(255, 0, 0); // Red for No
-    }
-    doc.text(`T2: ${toilet2 ? "Yes" : "No"}`, toiletBoxX, toiletBoxY + 26);
-  
-    // Comment box 
-    const commentBoxX = 10;
-    const commentBoxY = 110; 
-    const commentBoxWidth = 190;
-    const commentBoxHeight = 70;
-    const cornerRadius = 8;
-  
-    doc.setFillColor(0, 0, 0);
-    doc.roundedRect(commentBoxX, commentBoxY, commentBoxWidth, commentBoxHeight, cornerRadius, cornerRadius, "F");
-  
-    doc.setFontSize(14);
-    doc.setTextColor(255, 255, 255);
-    doc.text("Comments:", commentBoxX + 10, commentBoxY + 12);
-    doc.setFontSize(12);
-    doc.text(comments, commentBoxX + 10, commentBoxY + 22, { maxWidth: commentBoxWidth - 20 });
-  
-    // --- Logo Section ---
-    const logo = "../../BIG_WALKS_green_brown_bg-removebg.png";
-    const marginBottom = 5;
-  
-    const availableHeight = height - (commentBoxY + commentBoxHeight) - marginBottom;
-  
-    const logoWidth = width;
-    const logoHeight = availableHeight > 0 ? availableHeight : 30;
-  
-    const logoX = 0;
-    const logoY = commentBoxY + commentBoxHeight;
-  
-    doc.addImage(logo, "PNG", logoX, logoY, logoWidth, logoHeight);
-  
-    doc.save("Big_Walk_Report.pdf");
   };
   
   
