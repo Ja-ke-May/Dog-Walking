@@ -6,24 +6,24 @@ import Paws from "../components/paws";
 
 export default function AccountPage() {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Track loading state
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
     if (storedUser) {
       setUser(storedUser);
     }
-    setLoading(false); // Set loading to false after data is fetched
+    setLoading(false); 
   }, []);
 
   const handleLogout = () => {
-    // Remove the user data from localStorage and redirect to home
+    
     localStorage.removeItem('loggedInUser');
-    window.location.href = "/"; // Redirect to home page
+    window.location.href = "/"; 
   };
 
   if (loading) {
-    // Show loading screen while user data is being fetched
+    
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <p className="text-white text-lg">Loading...</p>
@@ -112,7 +112,7 @@ export default function AccountPage() {
 
                     {/* Report Link */}
                     <a
-                      href={`../reports/name/${walk.report}`}
+                      href={`../../${user.userID}/reports/${walk.report}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-100 hover:underline hover:text-blue-500 mt-2 md:mt-4 block"
