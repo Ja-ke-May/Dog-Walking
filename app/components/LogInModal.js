@@ -12,7 +12,7 @@ export default function LoginModal({ isOpen, onClose, onSuccess }) {
     let accounts = [];
 
     try {
-      const response = await fetch('/accountsInfo/accounts.json'); 
+      const response = await fetch('/one/reports/accountsInfo/accounts.json'); 
       if (!response.ok) {
         throw new Error("Failed to fetch account data.");
       }
