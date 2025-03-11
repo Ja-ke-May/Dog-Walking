@@ -3,28 +3,42 @@ import { useState } from "react";
 export default function LoginModal({ isOpen, onClose, onSuccess }) {
   const [error, setError] = useState("");
 
-  const handleLogin = (e) => {
-    e.preventDefault(); 
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
     const email = e.target.email.value.trim().toLowerCase();
-    const password = e.target.password.value; 
+    const password = e.target.password.value;
 
-    const accounts = JSON.parse(process.env.NEXT_PUBLIC_ACCOUNTS || "[]");
+    let accounts = [];
+
+    try {
+      const response = await fetch('/accountsInfo/accounts.json'); 
+      if (!response.ok) {
+        throw new Error("Failed to fetch account data.");
+      }
+
+      accounts = await response.json(); // Parse JSON from the server response
+    } catch (err) {
+      console.error("Error fetching or parsing JSON:", err);
+      setError("There was an issue with the login data.");
+      return;
+    }
 
     const user = accounts.find(
-      (account) => account.email.toLowerCase() === email && account.password === password 
+      (account) => account.email.toLowerCase() === email && account.password === password
     );
-  
+
     if (user) {
       console.log("Login successful!");
       setError("");
       onSuccess(user);
-      onClose(); 
+      onClose();
     } else {
       console.log("Invalid login");
       setError("Invalid email or password");
     }
   };
+
 
   if (!isOpen) return null;
 
