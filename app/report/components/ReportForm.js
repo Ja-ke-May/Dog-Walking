@@ -5,7 +5,7 @@ const ReportForm = () => {
   const [dogName, setDogName] = useState("");
   const [walkDate, setWalkDate] = useState("");
   const [walkTime, setWalkTime] = useState("");
-  const [walkLength, setWalkLength] = useState("");
+  const [walkType, setWalkType] = useState("");
   const [comments, setComments] = useState("");
   const [toilet1, setToilet1] = useState(false);
   const [toilet2, setToilet2] = useState(false);
@@ -101,9 +101,10 @@ if (photo) {
     doc.roundedRect(nameDateTimeX - 5, nameDateTimeY - 5, 80, 40, 8, 8, "F");
     doc.setFontSize(18);
     doc.setTextColor(255, 255, 255);
-    doc.text(`Name: ${dogName}`, nameDateTimeX, nameDateTimeY + 8);
-    doc.text(`Date: ${formattedWalkDate}`, nameDateTimeX, nameDateTimeY + 16);
-    doc.text(`Time: ${walkTime}`, nameDateTimeX, nameDateTimeY + 24);
+    doc.text(`Name: ${dogName}`, nameDateTimeX, nameDateTimeY + 4);
+    doc.text(`Date: ${formattedWalkDate}`, nameDateTimeX, nameDateTimeY + 12);
+    doc.text(`Time: ${walkTime}`, nameDateTimeX, nameDateTimeY + 20);
+    doc.text(`Type: ${walkType}`, nameDateTimeX, nameDateTimeY + 28);
   
     // Toilet box
     const toiletBoxX = 165;
@@ -212,20 +213,24 @@ if (bottomDogPhoto) {
           />
         </div>
 
-       
         <div>
-          <label htmlFor="walkLength" className="block text-xl font-semibold">
-            Walk Length (in minutes):
-          </label>
-          <input
-            type="number"
-            id="walkLength"
-            value={walkLength}
-            onChange={(e) => setWalkLength(e.target.value)}
-            required
-            className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#B5A888] transition"
-          />
-        </div>
+  <label htmlFor="walkType" className="block text-xl font-semibold">
+    Walk Type:
+  </label>
+  <select
+    id="walkType"
+    value={walkType}
+    onChange={(e) => setWalkType(e.target.value)}
+    required
+    className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#B5A888] transition"
+  >
+    <option value="">Select a walk type</option>
+    <option value="Big Walk 45m">Big Walk 45m</option>
+    <option value="Huge Walk 90m">Huge Walk 90m</option>
+    <option value="3/4 Hike">3/4 Hike</option>
+  </select>
+</div>
+
 
        
         <div>
