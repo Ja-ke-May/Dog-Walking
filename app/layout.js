@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Big Walks | Professional Dog Walking HD4 Huddersfield, West Yorkshire",
-  description: "Dependable dog walking services by Jacob May in the West Yorkshire area. Book a big walk today!",
-  keywords: "dog walking, dog walker, Huddersfield, West Yorkshire, pet care, dog care, individual, group",
+  description: "Dependable dog walking services by Jake and Jack in the West Yorkshire area. Book a big walk today!",
+  keywords: "dog walking, dog walker, Huddersfield, West Yorkshire, pet care, dog care, individual, group, solo walk, solo",
   author: "Jacob May",
   openGraph: {
     title: "Big Walks | Professional Dog Walking in Huddersfield",

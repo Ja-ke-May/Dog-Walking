@@ -74,7 +74,7 @@ export default function AccountPage() {
       </div>
 
       {/* Walk History Section */}
-      <div className="mt-4 p-2 rounded-lg shadow-lg flex flex-col items-center justify-center md:text-lg ">
+      <div className="mt-4 p-2 flex flex-col items-center justify-center md:text-lg ">
         <h2 className="text-2xl md:text-3xl font-semibold text-center mb-4">Walk History</h2>
 
         <AnimatePresence>
