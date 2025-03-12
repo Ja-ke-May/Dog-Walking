@@ -13,6 +13,7 @@ const SignUpForm = () => {
         phone: "",
         terms: false,
     });
+    const [buttonText, setButtonText] = useState("Sign Up");
 
     const handleAgeChange = (event) => {
         setDogAge(event.target.value);
@@ -31,7 +32,7 @@ const SignUpForm = () => {
         event.preventDefault();
 
         if (!formData.terms) {
-            alert("You must accept the terms and conditions to proceed.");
+            setButtonText("You must accept the terms");
             return;
         }
 
@@ -47,6 +48,8 @@ const SignUpForm = () => {
             terms: formData.terms ? "Accepted" : "Not Accepted", 
         };
 
+        setButtonText("Sending...");
+
         emailjs
             .send(
                 "service_e1ghwi9",
@@ -56,7 +59,7 @@ const SignUpForm = () => {
             )
             .then(
                 (response) => {
-                    alert("Message sent successfully!");
+                    setButtonText("Thank you, I'll be in touch shortly.");
                     setFormData({
                         name: "",
                         dogName: "",
@@ -68,13 +71,13 @@ const SignUpForm = () => {
                     });
                 },
                 (error) => {
-                    alert("Failed to send the message. Please try again.");
+                    setButtonText("Sorry, there was a problem.");
                 }
             );
     };
 
     return (
-        <div className="relative flex max-w-lg bg-white/0 rounded p-4 flex-col items-center mt-20 md:mt-40">
+        <div className="relative flex max-w-lg bg-white/0 rounded p-4 flex-col items-center mt-20 md:mt-50">
             <div className="p-2 bg-black/80 text-[#B5A888] md:text-lg lg:text-xl brightness-125 rounded w-full">
                 <h3 className="text-center font-bold text-lg md:text-xl mb-1 md:mb-2">Sign Up</h3>
 
@@ -180,7 +183,7 @@ const SignUpForm = () => {
                         type="submit"
                         className="mt-2 p-2 bg-[#B5A888] text-black font-bold rounded hover:bg-[#a49376]"
                     >
-                        Sign Up
+                         {buttonText}
                     </button>
                 </form>
             </div>
@@ -236,19 +239,53 @@ const SignUpForm = () => {
             <h4 className="font-bold text-md mt-3">4. Liability</h4>
             <p className="text-sm">
                 - While I take every precaution for your dog’s safety, BIG WALKS is not responsible for any unforeseen incidents, injuries, or illnesses.<br />
-                - Your dog must have up-to-date vaccinations, flea, and worm treatments.
+                - Your dog must have up-to-date vaccinations, flea, and worm treatments.<br />
+                - BIG WALKS holds up to £5 million in public liability insurance to cover any accidents or incidents that may occur during walks.
             </p>
 
-            <h4 className="font-bold text-md mt-3">5. Photos & Videos</h4>
-            <p className="text-sm">
-                - I may take photos and videos of your dog during walks for promotional purposes (e.g., YouTube, social media).<br />
-                - If you do not wish for public sharing, we can discuss private video-sharing options instead.
-            </p>
+            <h4 className="font-bold text-md mt-3">7. Photos, Videos, & Online Account</h4>
+<p className="text-sm">
+    - I may take photos and videos of your dog during walks for promotional purposes (e.g., YouTube, social media).<br />
+    - If you do not wish for public sharing, we can discuss private video sharing options instead.<br />
+    - As part of our service, you will be given access to an online account where you can log in to view your dog’s walk history, including links to walk reports, photos, and videos.<br />
+    - This account is for you to monitor your dog’s walks and receive walk related updates. The content shared will only include your dog's name, date, time of walks, comments on the walk and images of your dog. No personal details about you or your dog’s location will be shared or made public.<br />
+    - You are responsible for keeping your login credentials secure. If you believe someone else has access to your account, please inform me immediately to have your password changed.
+</p>
 
-            <h4 className="font-bold text-md mt-3">6. Cancellations & Fees</h4>
-            <p className="text-sm">
-                - Cancellations must be made at least 24 hours in advance. Late cancellations may be subject to a fee.
-            </p>
+<h4 className="font-bold text-md mt-3">6. Payments, Cancellations & Fees</h4>
+<p className="text-sm">
+    - **Payments**: 
+    <br />
+    - Payment for services is due after the walk has been completed, unless otherwise agreed.
+    <br />
+    - I accept payments via [bank transfer, credit card, PayPal, etc.]. Payment details will be provided after the walk.
+    <br />
+    - Payment for recurring bookings (e.g., weekly or monthly) will be collected on a regular basis as agreed upon at the time of booking.
+    <br />
+    - Any late payments will incur a late fee of 50%. Services may be paused or canceled if payments are not received within 4 weeks of the due date.
+    <br />
+    - Refunds will only be issued for cancellations made at least 24 hours before the scheduled pick-up time. No refunds will be provided for cancellations within 24 hours.
+    <br />
+    <br />
+    - **Cancellations**: 
+    <br />
+    - Cancellations must be made at least 24 hours before the scheduled pick-up time to avoid any charges.
+    <br />
+    - Cancellations made less than 24 hours before the scheduled pick-up time will incur a cancellation fee of 50% of the total cost of the service.
+    <br />
+    - If I arrive to collect your dog and you have not informed me of a cancellation, you will be charged the full amount for the walk.
+    <br />
+    - In the event of an emergency, please contact me as soon as possible. I will consider each case individually, but cancellation fees may still apply.
+    <br />
+    - You may reschedule walks within the 24-hour notice period, subject to availability. If rescheduling is not possible, the cancellation policy will apply.
+    <br />
+    <br />
+    - **Late Arrivals & Pick-Up Delays**: 
+    <br />
+    - If I arrive to collect your dog and you are unavailable or delayed, I will do my best to accommodate, but please note that the walk duration may be shortened to stay on schedule.
+    <br />
+    - Late arrivals may still be charged in full. I kindly ask that you ensure your dog is ready for the scheduled pick-up time to avoid delays and extra charges.
+</p>
 
             <h4 className="font-bold text-md mt-3">7. UK Dog Walking Laws & Compliance</h4>
             <p className="text-sm">
@@ -258,7 +295,10 @@ const SignUpForm = () => {
                 - Dog Fouling Laws – I always clean up after your dog.
             </p>
 
-            <h4 className="font-bold text-md mt-3">8. Contact Information</h4>
+            <h4 className="font-bold text-md mt-3">8. Data Protection and Privacy</h4>
+            <p className="text-sm"> - BIG WALKS is committed to protecting your privacy and complying with the General Data Protection Regulation (GDPR).<br /> - By signing up, you consent to the collection and processing of your personal data (such as your name, contact details, and your dog's name and walk history) for the purpose of providing the dog walking services.<br /> - Your data will only be used for operational purposes, including managing your dog’s walks, communication, and account access.<br /> - No personal details, such as your home address, phone number, or other sensitive information, will be shared publicly or with third parties, except where required by law.<br /> - Any images or videos of your dog will be shared only with your consent. These will be used for walk reports and promotional purposes, unless you opt out.<br /> - You have the right to access, correct, or request the deletion of your personal data at any time. Please contact us at Big_Walks@outlook.co.uk for any data-related requests.<br /> - We will ensure that your data is kept secure and will not be stored longer than necessary for the provision of services. Your online account will be protected with a secure login, and it is your responsibility to keep your credentials safe.<br /> - For further details on how your personal data is handled, please refer to our Privacy Policy, which you can request at any time. </p>
+
+            <h4 className="font-bold text-md mt-3">9. Contact Information</h4>
             <p className="text-sm">
                 **Address:** 259 Meltham Road, Netherton, Huddersfield HD4 7HL<br />
                 **Phone:** 07780 685832<br />
