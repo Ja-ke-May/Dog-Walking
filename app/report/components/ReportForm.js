@@ -9,30 +9,36 @@ const ReportForm = () => {
   const [comments, setComments] = useState("");
   const [toilet1, setToilet1] = useState(false);
   const [toilet2, setToilet2] = useState(false);
-  const [photo, setPhoto] = useState(null);
+  const [photo, setPhoto] = useState(null); 
+  const [bottomDogPhoto, setbottomDogPhoto] = useState(null);
 
-  const formatDateUK = (date) => {
-    const d = new Date(date);
-    const day = String(d.getDate()).padStart(2, "0");
-    const month = String(d.getMonth() + 1).padStart(2, "0");
-    const year = d.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
+const getBase64Image = (image) => {
+  const canvas = document.createElement("canvas");
+  canvas.width = image.width;
+  canvas.height = image.height;
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(image, 0, 0);
+  return canvas.toDataURL("image/png"); // Force PNG output
+};
 
-  function getBase64Image(img) {
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
-    return canvas.toDataURL();
-  }
-  
-  const generatePDF = () => {
+
+
+  const generatePDF = async () => {
     const doc = new jsPDF("p", "mm", "a4");
     const width = 210;
     const height = 297;
   
+    const formatDateUK = (date) => {
+      const d = new Date(date);
+      const day = String(d.getDate()).padStart(2, "0");
+      const month = String(d.getMonth() + 1).padStart(2, "0");
+      const year = d.getFullYear();
+      return `${day}/${month}/${year}`;
+    };
+  
+   
+  
+    // Background color stops
     const colorStops = [
       { color: "#B5A888", yPos: 0 },
       { color: "#9A9A7B", yPos: 99 },
@@ -48,139 +54,113 @@ const ReportForm = () => {
     doc.setFont("helvetica", "bold");
     doc.setFontSize(30);
     doc.setTextColor(0, 0, 0);
-    const topMargin = 6;
-    const titleY = topMargin + 19;
-    doc.text("Walk Report", 105, titleY, { align: "center" });
-  
-    //dog photo
-    if (photo) {
-      const image = new Image();
-      const imageURL = URL.createObjectURL(photo);
-      
-      image.src = imageURL;
-    
-      image.onload = function () {
-        const imgWidth = 60; 
-        const imgHeight = (image.height / image.width) * imgWidth;
-    
-        if (imgWidth <= 0 || imgHeight <= 0 || isNaN(imgWidth) || isNaN(imgHeight)) {
-          console.error("Invalid image dimensions:", imgWidth, imgHeight);
-          return;
-        }
-    
-        const imgX = 10;
-        const imgY = 2;
-    
-        // Ensure the image format is correctly set
-        let imgFormat = "JPEG"; 
-        const fileExtension = photo.name.split(".").pop().toLowerCase();
-        if (fileExtension === "png") {
-          imgFormat = "PNG";
-        } else if (fileExtension === "gif") {
-          imgFormat = "GIF";
-        }
-    
-        // Use base64 encoding to add the image
-        const imgBase64 = getBase64Image(image);
-    
-        // Add image using base64 data
-        doc.addImage(imgBase64, imgFormat, imgX, imgY, imgWidth, imgHeight, undefined, "FAST");
-    
-  
-        
-        const formattedWalkDate = formatDateUK(walkDate);
-  
-        const nameDateTimeX = 80;
-        const nameDateTimeY = 55;
-        const nameDateTimeWidth = 70; 
-        const nameDateTimeHeight = 30;
-        const nameDateTimeRadius = 8;
-  
-        
-        doc.setFillColor(0, 0, 0);
-        doc.roundedRect(nameDateTimeX - 5, nameDateTimeY - 5, nameDateTimeWidth + 10, nameDateTimeHeight + 10, nameDateTimeRadius, nameDateTimeRadius, "F");
-  
-        
-        doc.setFontSize(18);
-        doc.setFont("helvetica", "bold");
-        doc.setTextColor(255, 255, 255);
-        doc.text(`Name: ${dogName}`, nameDateTimeX, nameDateTimeY + 8);
-        doc.text(`Date: ${formattedWalkDate}`, nameDateTimeX, nameDateTimeY + 16);
-        doc.text(`Time: ${walkTime}`, nameDateTimeX, nameDateTimeY + 24);
-  
-        
-        const toiletBoxX = 165;
-        const toiletBoxY = 55;
-        const toiletBoxWidth = 30;
-        const toiletBoxHeight = 30;
-        const toiletBoxRadius = 8;
+    doc.text("Walk Report", 105, 25, { align: "center" });
   
     
-        doc.setFillColor(0, 0, 0);
-        doc.roundedRect(toiletBoxX - 5, toiletBoxY - 5, toiletBoxWidth + 10, toiletBoxHeight + 10, toiletBoxRadius, toiletBoxRadius, "F");
+   
   
-        doc.setFontSize(16);
-        doc.setFont("helvetica", "bold");
-        doc.setTextColor(255, 255, 255);
-        doc.text("Toilet:", toiletBoxX, toiletBoxY + 8);
-  
-        doc.setFontSize(16);
-        doc.setFont("helvetica", "bold");
-        doc.setTextColor(255, 255, 255);
-  
-        if (toilet1) {
-          doc.setTextColor(0, 255, 0); 
-        } else {
-          doc.setTextColor(255, 0, 0); 
-        }
-        doc.text(`T1: ${toilet1 ? "Yes" : "No"}`, toiletBoxX, toiletBoxY + 18);
-  
-        if (toilet2) {
-          doc.setTextColor(0, 255, 0);
-        } else {
-          doc.setTextColor(255, 0, 0); 
-        }
-        doc.text(`T2: ${toilet2 ? "Yes" : "No"}`, toiletBoxX, toiletBoxY + 26);
-  
-        const commentBoxX = 10;
-        const commentBoxY = 110;
-        const commentBoxWidth = 190;
-        const commentBoxHeight = 70;
-        const cornerRadius = 8;
-  
-        doc.setFillColor(0, 0, 0);
-        doc.roundedRect(commentBoxX, commentBoxY, commentBoxWidth, commentBoxHeight, cornerRadius, cornerRadius, "F");
-  
-        doc.setFontSize(18);
-        doc.setTextColor(255, 255, 255);
-        doc.text("Comments:", commentBoxX + 10, commentBoxY + 13);
-        doc.setFontSize(16);
-        doc.text(comments, commentBoxX + 10, commentBoxY + 22, { maxWidth: commentBoxWidth - 20 });
-  
-        const logo = "../../BIG_WALKS_green_brown_bg-removebg.png";
-        const marginBottom = 5;
-  
-        const availableHeight = height - (commentBoxY + commentBoxHeight) - marginBottom;
-        const logoWidth = width;
-        const logoHeight = availableHeight > 0 ? availableHeight : 30;
-  
-        const logoX = 0;
-        const logoY = commentBoxY + commentBoxHeight;
-  
-        doc.addImage(logo, "PNG", logoX, logoY, logoWidth, logoHeight);
+    
+  // Handle top dog photo (any format)
+if (photo) {
+  const image = new Image();
+  const imageURL = URL.createObjectURL(photo); // create URL for blob
 
-        const smallLogo = "../../BIG_WALKS_green_brown_bg-removebg.png"; 
-      const smallLogoWidth = 40;
-      const smallLogoHeight = 30;
-      const smallLogoX = width - smallLogoWidth - 6; 
-      const smallLogoY = 6; 
+  image.src = imageURL;
 
-      doc.addImage(smallLogo, "PNG", smallLogoX, smallLogoY, smallLogoWidth, smallLogoHeight);
+  await new Promise((resolve) => {
+    image.onload = function () {
+      const imgWidth = 56;
+      const imgHeight = (image.height / image.width) * imgWidth;
+
+      if (imgWidth <= 0 || imgHeight <= 0 || isNaN(imgWidth) || isNaN(imgHeight)) {
+        console.error("Invalid image dimensions:", imgWidth, imgHeight);
+        resolve(); // continue even if error
+        return;
+      }
+
+      const imgX = 10;
+      const imgY = 5;
+
+      // Convert to base64 PNG (universal format for jsPDF)
+      const imgBase64 = getBase64Image(image);
+
+      // Add to PDF
+      doc.addImage(imgBase64, "PNG", imgX, imgY, imgWidth, imgHeight, undefined, "FAST");
+      resolve();
+    };
+  });
+}
+
   
-        doc.save("Big_Walk_Report.pdf");
-      };
-    }
+    // Name, Date, Time box
+    const formattedWalkDate = formatDateUK(walkDate);
+    const nameDateTimeX = 80;
+    const nameDateTimeY = 55;
+  
+    doc.setFillColor(0, 0, 0);
+    doc.roundedRect(nameDateTimeX - 5, nameDateTimeY - 5, 80, 40, 8, 8, "F");
+    doc.setFontSize(18);
+    doc.setTextColor(255, 255, 255);
+    doc.text(`Name: ${dogName}`, nameDateTimeX, nameDateTimeY + 8);
+    doc.text(`Date: ${formattedWalkDate}`, nameDateTimeX, nameDateTimeY + 16);
+    doc.text(`Time: ${walkTime}`, nameDateTimeX, nameDateTimeY + 24);
+  
+    // Toilet box
+    const toiletBoxX = 165;
+    const toiletBoxY = 55;
+    doc.setFillColor(0, 0, 0);
+    doc.roundedRect(toiletBoxX - 5, toiletBoxY - 5, 40, 40, 8, 8, "F");
+    doc.setFontSize(16);
+    doc.text("Toilet:", toiletBoxX, toiletBoxY + 8);
+  
+    doc.setTextColor(toilet1 ? 0 : 255, toilet1 ? 255 : 0, 0);
+    doc.text(`T1: ${toilet1 ? "Yes" : "No"}`, toiletBoxX, toiletBoxY + 18);
+    doc.setTextColor(toilet2 ? 0 : 255, toilet2 ? 255 : 0, 0);
+    doc.text(`T2: ${toilet2 ? "Yes" : "No"}`, toiletBoxX, toiletBoxY + 26);
+  
+    // Comments box
+    const commentBoxY = 110;
+    doc.setFillColor(0, 0, 0);
+    doc.roundedRect(10, commentBoxY, 190, 70, 8, 8, "F");
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(18);
+    doc.text("Comments:", 15, commentBoxY + 13);
+    doc.setFontSize(16);
+    doc.text(comments, 15, commentBoxY + 22, { maxWidth: 180 });
+  
+   // Handle bottom dog photo (any format)
+if (bottomDogPhoto) {
+  const image = new Image();
+  const imageURL = URL.createObjectURL(bottomDogPhoto);
+
+  image.src = imageURL;
+
+  await new Promise((resolve) => {
+    image.onload = function () {
+      const imgWidth = 190;
+      const imgHeight = (image.height / image.width) * imgWidth;
+      const imgX = 10;
+      const imgY = commentBoxY + 70 + 5;
+
+      // Convert to base64 PNG
+      const imgBase64 = getBase64Image(image);
+
+      // Add to PDF
+      doc.addImage(imgBase64, "PNG", imgX, imgY, imgWidth, imgHeight, undefined, "FAST");
+      resolve();
+    };
+  });
+}
+
+  
+    // Small logo
+    const smallLogo = "../../BIG_WALKS_green_brown_bg-removebg.png";
+    doc.addImage(smallLogo, "PNG", width - 46, 6, 40, 30);
+  
+    // Save PDF
+    doc.save("Big_Walk_Report.pdf");
   };
+  
   
   
   return (
@@ -292,16 +272,35 @@ const ReportForm = () => {
        
         <div>
           <label htmlFor="photo" className="block text-xl font-semibold">
-            Photo (optional):
+            Photo:
           </label>
           <input
             type="file"
             id="photo"
             accept="image/*"
-            onChange={(e) => setPhoto(e.target.files[0])}
+            onChange={(e) => {
+              setPhoto(e.target.files[0]);
+              
+            }}
             className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#B5A888] transition"
           />
         </div>
+
+        <div>
+  <label htmlFor="bottomDogPhoto" className="block text-xl font-semibold">
+    Bottom Picture:
+  </label>
+  <input
+    type="file"
+    id="bottomDogPhoto"
+    accept="image/*"
+    onChange={(e) => {
+      setbottomDogPhoto(e.target.files[0]);
+      
+    }}
+    className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#B5A888] transition"
+  />
+</div>
 
        
         <button
