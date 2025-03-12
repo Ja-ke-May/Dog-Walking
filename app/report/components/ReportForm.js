@@ -101,10 +101,10 @@ if (photo) {
     doc.roundedRect(nameDateTimeX - 5, nameDateTimeY - 5, 80, 40, 8, 8, "F");
     doc.setFontSize(18);
     doc.setTextColor(255, 255, 255);
-    doc.text(`Name: ${dogName}`, nameDateTimeX, nameDateTimeY + 6);
-    doc.text(`Date: ${formattedWalkDate}`, nameDateTimeX, nameDateTimeY + 14);
-    doc.text(`Time: ${walkTime}`, nameDateTimeX, nameDateTimeY + 22);
-    doc.text(`Type: ${walkType}`, nameDateTimeX, nameDateTimeY + 30);
+    doc.text(`Name: ${dogName}`, nameDateTimeX, nameDateTimeY + 5);
+    doc.text(`Date: ${formattedWalkDate}`, nameDateTimeX, nameDateTimeY + 13);
+    doc.text(`Time: ${walkTime}`, nameDateTimeX, nameDateTimeY + 21);
+    doc.text(`Type: ${walkType}`, nameDateTimeX, nameDateTimeY + 29);
   
     // Toilet box
     const toiletBoxX = 165;
