@@ -9,6 +9,23 @@ export default function AccountPage() {
   const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-5D6MRB0W10';
+    script.async = true;
+    document.body.appendChild(script);
+  
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-5D6MRB0W10');
+  
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
     if (storedUser) {
       setUser(storedUser);
