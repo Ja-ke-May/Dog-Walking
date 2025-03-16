@@ -43,16 +43,6 @@
         },
         {
           "userID": "one",
-          "date": "10/03/2025",
-          "walkType": "Big Walk",
-          "duration": "45 minutes",
-          "walkImage": "woodland-loop.jpg",
-          "report": "report3.pdf",
-          "videoUrl": "https://www.youtube.com/watch?v=-rvwi_vCZdc", 
-          "title": "Woodland Loop"
-        },
-        {
-          "userID": "one",
           "date": "08/03/2025",
           "walkType": "Big Walk",
           "duration": "45 minutes",
