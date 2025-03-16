@@ -11,7 +11,17 @@
         "profileImage": "jack-flying.jpg"
       },
       "walkHistory": [
-      {
+        {
+          "userID": "one",
+          "date": "16/03/2025",
+          "walkType": "Big Walk",
+          "duration": "45 minutes",
+          "walkImage": "walking-up-stream.jpg",
+          "report": "report4.pdf",
+          "videoUrl": "https://www.youtube.com/watch?v=otIqKVdhdm8", 
+          "title": "Walking Up A Stream"
+        },
+        {
           "userID": "one",
           "date": "10/03/2025",
           "walkType": "Big Walk",
