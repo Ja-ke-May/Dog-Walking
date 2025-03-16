@@ -7,6 +7,7 @@ import Paws from "../components/paws";
 export default function AccountPage() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); 
+  const [visibleWalks, setVisibleWalks] = useState(4);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -28,10 +29,38 @@ export default function AccountPage() {
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
     if (storedUser) {
-      setUser(storedUser);
+      setUser(storedUser); 
     }
-    setLoading(false); 
+    setLoading(false);
+  
+    const fetchUpdatedData = async () => {
+      try {
+        const response = await fetch('/one/reports/accountInfo/account.json', { cache: "no-store" });
+        if (!response.ok) throw new Error("Failed to fetch updated account data.");
+  
+        const accounts = await response.json();
+  
+        const updatedUser = accounts.find(
+          (account) => account.username.toLowerCase() === storedUser.username.toLowerCase()
+        );
+  
+        if (updatedUser) {
+          setUser(updatedUser); 
+          localStorage.setItem('loggedInUser', JSON.stringify(updatedUser));
+        }
+      } catch (err) {
+        console.error("Error refreshing account data:", err);
+      }
+    };
+  
+    
+    fetchUpdatedData();
+
+    const interval = setInterval(fetchUpdatedData, 60000);
+  
+    return () => clearInterval(interval);
   }, []);
+  
 
   const handleLogout = () => {
     
@@ -55,6 +84,10 @@ export default function AccountPage() {
       </div>
     );
   }
+
+  const handleLoadMore = () => {
+    setVisibleWalks((prev) => prev + 4); 
+  };
 
   return (
     <>
@@ -103,7 +136,7 @@ export default function AccountPage() {
             className="space-y-6"
           >
             {user.walkHistory.length > 0 ? (
-              user.walkHistory.map((walk, index) => (
+              user.walkHistory.slice(0, visibleWalks).map((walk, index) => (
                 <div 
                 key={index}
                 >
@@ -159,6 +192,16 @@ export default function AccountPage() {
             )}
           </motion.div>
         </AnimatePresence>
+
+        {visibleWalks < user.walkHistory.length && ( 
+            <button
+              onClick={handleLoadMore}
+              className="mt-6 px-6 py-3 bg-green-700 text-white rounded-full shadow-md hover:bg-green-800 transition"
+            >
+              Load More Walks
+            </button>
+          )}
+
       </div>
     </div> 
     </>
