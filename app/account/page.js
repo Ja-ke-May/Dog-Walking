@@ -198,7 +198,7 @@ export default function AccountPage() {
               onClick={handleLoadMore}
               className="mt-6 px-6 py-3 bg-green-700 text-white rounded-full shadow-md hover:bg-green-800 transition"
             >
-              Load More Walks
+              Load More...
             </button>
           )}
 
