@@ -24,7 +24,7 @@ export const metadata = {
     locale: "en_GB",
     images: [
       {
-        url: "https://www.bigwalks.co.uk/big-walks-meta-url.png", 
+        url: "https://www.bigwalks.co.uk/logo-crop.png", 
         width: 1200,
         height: 630,
         alt: "Big Walks - Dog Walking Service in Huddersfield",
