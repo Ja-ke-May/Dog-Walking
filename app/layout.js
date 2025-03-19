@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Big Walks | Professional Dog Walking HD4 Huddersfield, West Yorkshire",
   description: "Dependable dog walking services by Jake and Jack in the West Yorkshire area. Book a big walk today!",
-  keywords: "dog walking, dog walker, Huddersfield, West Yorkshire, pet care, dog care, individual, group, solo walk, solo",
+  keywords: "dog walking Huddersfield, dog walker West Yorkshire, pet care services, solo dog walks, group dog walks, large breed specialists, dog exercise",
   author: "Jacob May",
   openGraph: {
     title: "Big Walks | Professional Dog Walking in Huddersfield",
@@ -22,6 +22,14 @@ export const metadata = {
     url: "https://bigwalks.co.uk",
     type: "website",
     locale: "en_GB",
+    images: [
+      {
+        url: "https://www.bigwalks.co.uk/big-walks-meta-url.png", 
+        width: 1200,
+        height: 630,
+        alt: "Big Walks - Dog Walking Service in Huddersfield",
+      },
+    ],
   },
 };
 
